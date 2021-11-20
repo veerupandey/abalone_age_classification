@@ -67,7 +67,7 @@ def get_logger(file_path=None, file_name=None):
     # Add handlers to the logger
     log.addHandler(ch)
 
-    if file_path:
+    if file_path and file_name:
         logger_filepath = os.path.join(file_path, file_name)
         os.makedirs(file_path, exist_ok=True)  # create folder if needed
 
