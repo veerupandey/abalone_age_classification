@@ -1,5 +1,22 @@
+# Abalone age classification
 
-**Milestone \# 1: Part 3. Project Proposal**
+Abalones are endangered marine snails that are found in the cold coastal water around the world. The price of an abalone is positively associated with its age. However, determining how old an abalone is a very complex process. 
+
+In this project we are classifying abalone snails into "young" and "old" according to their number of rings based on input features such as abalone's gender, height with meat in shell, weight of the shell etc.
+
+## Usage
+To download the data, run the script below.
+
+```bash
+python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
+```
+In case script is called without arguments, arguments will be fetched from config file.
+
+```bash
+python src/data/data_download.py
+```
+
+## Milestone \# 1: Part 3. Project Proposal
 
 Last updated: Nov 19th, 2021
 
