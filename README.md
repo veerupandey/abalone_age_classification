@@ -71,16 +71,16 @@ Last updated: Nov 19th, 2021
 
     -   Generate a full report that consists of
 
-        -Summary
+        - Summary
 
-        -Introduction
+        - Introduction
 
-        -Methods
+        - Methods
             - Data
             - Analysis
 
-        -Results/discussion
+        - Results/discussion
 
-        -Future analysis directions/takeaway
+        - Future analysis directions/takeaway
 
-        -References
+        - References
