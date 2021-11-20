@@ -1,3 +1,4 @@
+
 **Milestone \# 1: Part 3. Project Proposal**
 
 Last updated: Nov 19th, 2021
@@ -37,9 +38,9 @@ Last updated: Nov 19th, 2021
 
     -   Sub questions:
 
-        - Which features are more important/significant in predicting
+        -Which features are more important/significant in predicting
         whether an abalone is old or young?
-        - Are there relationships between these features?
+        -Are there relationships between these features?
 
 -   **Preliminary Analysis Plan**
 
@@ -70,16 +71,16 @@ Last updated: Nov 19th, 2021
 
     -   Generate a full report that consists of
 
-        -   Summary
+        -Summary
 
-        -   Introduction
+        -Introduction
 
-        -   Methods
+        -Methods
             - Data
             - Analysis
 
-        -   Results/discussion
+        -Results/discussion
 
-        -   Future analysis directions/takeaway
+        -Future analysis directions/takeaway
 
-        -   References
+        -References
