@@ -1,7 +1,7 @@
 # author: Rakesh Pandey
 # date: 2021-11-19
 
-"""Downloads data csv data from a web url.
+"""Downloads data from a web url.
 Usage: data_download.py [--url=<url>] [--outputfile=<outputfile>]
 
 Options:
