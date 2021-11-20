@@ -1,10 +1,6 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
 
-[**Milestone \# 1: Part 3. Project Proposal**]{.ul}
+
+**Milestone \# 1: Part 3. Project Proposal**
 
 -   **About the Data set**
 
