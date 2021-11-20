@@ -57,10 +57,13 @@ Last updated: Nov 19th, 2021
     for the Research Question, the Data and the Analysis**
     -    Here are some preliminary EDA figures that we found interesting during our data exploration:
     -    The first EDA is on target distribution in train set. We can observe an unblanced data in target variable.
+    
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/target_viz.png)
     -    The second EDA is on corrleation heat map. We can observe that most feature variables are highly correlated.
+    
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/corr_viz.png)
     -    The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
+    
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
 
 -   **How to Share the Analysis Results**
