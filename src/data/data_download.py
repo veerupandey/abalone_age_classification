@@ -19,14 +19,16 @@ sys.path.append(project_root)
 
 # Import relevant modules
 import os
-import pandas as pd
-import requests
-from docopt import docopt
 import traceback
-import logging as logger
+import requests
+import pandas as pd
+from docopt import docopt
 
 # Custom imports
-from utils.util import get_config
+from utils.util import get_config, get_logger
+
+# Define logger
+logger = get_logger()
 
 
 def get_data(url, outputfile):
@@ -75,6 +77,8 @@ if __name__ == "__main__":
     url = opt.get("--url")
     outputfile = opt.get("--outputfile")
 
+    # if optional arguments are not provided
+    # read it from config file
     if not url:
         url = get_config("data.url")
 
