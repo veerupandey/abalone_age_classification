@@ -9,16 +9,24 @@ Options:
 [--outputfile=<outputfile>]     Output path to save the data locally.
 """
 
+# Import all the modules from project root directory
+from pathlib import Path
+import sys
+
+project_root = str(Path(__file__).parents[2])
+sys.path.append(project_root)
+
+
+# Import relevant modules
 import os
 import pandas as pd
 import requests
-
 from docopt import docopt
 import traceback
 import logging as logger
-import sys
 
-# from utils.util import get_config
+# Custom imports
+from utils.util import get_config
 
 
 def get_data(url, outputfile):
@@ -63,7 +71,15 @@ if __name__ == "__main__":
     # Parse command line arguments
     opt = docopt(__doc__)
 
-    # Download data
-    url = opt["--url"]
-    outputfile = opt["--outputfile"]
+    # # Download data
+    url = opt.get("--url")
+    outputfile = opt.get("--outputfile")
+
+    if not url:
+        url = get_config("data.url")
+
+    if not outputfile:
+        outputfile = os.path.join(project_root, get_config("data.outputfile"))
+
+    # Get data
     get_data(url, outputfile)
