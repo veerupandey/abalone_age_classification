@@ -66,6 +66,7 @@ editor_options:
     analysis figure we will create that makes sense for the research
     question, the data we have and the analysis we plan to do:**
 
+    -    The first EDA is on target distribution in train set
     -    ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/target_viz.png)
 
 -   **How to share the analysis results:**
