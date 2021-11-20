@@ -56,7 +56,9 @@ Last updated: Nov 19th, 2021
 
 -   **Discussion of EDA Table and Exploratory Data Analysis Figure 
     for the Research Question, the Data and the Analysis**
-    -    Here are some preliminary EDA figures that we found interesting during our data exploration:
+    -    Here are some preliminary EDA table and figures that we found interesting during our data exploration:
+    -    The table below displays the descriptive data analysis to our training data. There is no missing value in our training data.
+         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/summary_table.png)
     -    The first EDA is on target distribution in train set. We can observe an unblanced data in target variable.
     
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/target_viz.png)
