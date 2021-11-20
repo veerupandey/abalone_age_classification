@@ -1,0 +1,3 @@
+data:
+  url: "https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
+  outputfile: "data/raw/abalone.data"
