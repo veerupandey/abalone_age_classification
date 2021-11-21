@@ -80,16 +80,16 @@ A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_a
 
 Here are some preliminary EDA table and figures that we found interesting during our data exploration:
 - The table below displays the descriptive data analysis to our training data. There is no missing value in our training data.
-         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/summary_table.png)
+- ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/summary_table_update.png)
          
 - The first EDA is on target distribution in train set. We can observe an unblanced data in target variable.
-         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/target_viz.png)
+- ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/target_viz_update.png)
          
 - The second EDA is on corrleation heat map. We can observe that most feature variables are highly correlated.
-         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/corr_viz.png)
+- ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/corr_viz_update.png)
          
-- The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
-         ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
+- The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones. 
+- ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
 
 
 ## License
@@ -99,4 +99,5 @@ This dataset is licensed under a Creative Commons Attribution 4.0 International 
 
 ## References
 
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.  
+Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) "The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait", Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
