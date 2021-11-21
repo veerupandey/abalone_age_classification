@@ -74,7 +74,7 @@ python src/data/data_download.py
 ```
 
 ## Discussion of EDA Table and Figure
-A detailed EDA report can be found here. (**TODO**: Add link to the EDA notebook)
+A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
 
 Here are some preliminary EDA table and figures that we found interesting during our data exploration:
 - The table below displays the descriptive data analysis to our training data. There is no missing value in our training data.
