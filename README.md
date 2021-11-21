@@ -89,7 +89,7 @@ Here are some preliminary EDA table and figures that we found interesting during
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/corr_viz.png)
          
 - The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
-         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
+         ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
 
 
 ## License
