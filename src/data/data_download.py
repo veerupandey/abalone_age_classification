@@ -1,4 +1,4 @@
-# author: Rakesh Pandey
+# DSCI_522_GROUP_28
 # date: 2021-11-19
 
 """Downloads data from a web url.
