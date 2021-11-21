@@ -17,7 +17,7 @@ In this project we are classifying abalone snails into "young" and "old" accordi
 
 ## Project Proposal
 
-Last updated: Nov 19th, 2021
+Last updated: Nov 21st, 2021
 
 -   **About the Data Set and Analysis**
 
@@ -54,12 +54,12 @@ Last updated: Nov 19th, 2021
 
 -   **Preliminary Analysis Plan**
 
-    Here is our prelimary analysis plan. Firstly, after the data download, we perform EDA on the features and investigate the relationships between the independent variables used in the prediction model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, after examining the statistical assumptions, we fit a random forest classification model on the data set. The final step is creating a full report that shares the analysis results, as structured below.
+    Here is our prelimary analysis plan. Firstly, after the data download, we split the data into train set and test set, perform EDA on the train set features and investigate the relationships between the independent variables used in our classification model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, after examining the statistical assumptions, we fit a random forest classification model on the data set, tune hyperparameters and evaluate the best performing model on the test set. The final step is creating a full report that shares the analysis results, as structured below.
 
 
 -   **Report**
 
-    The final report can be found here. *(Link will be added when a report is finalized.)* The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+    The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/reports/reports.md" >here</a>. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
 
 ## Usage
 To download the data, run the script below.
@@ -72,6 +72,8 @@ In case script is called without arguments, arguments will be fetched from confi
 ```bash
 python src/data/data_download.py
 ```
+## Dependencies
+A environment file `environment.yaml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yaml">here</a>. As project develops, this `yaml` file is subjected to change.
 
 ## Discussion of EDA Table and Figure
 A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
@@ -87,7 +89,7 @@ Here are some preliminary EDA table and figures that we found interesting during
          ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/corr_viz.png)
          
 - The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
-         ![](https://github.com/nickmao1994/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
+         ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
 
 
 ## License
