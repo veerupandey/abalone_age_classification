@@ -72,6 +72,8 @@ In case script is called without arguments, arguments will be fetched from confi
 ```bash
 python src/data/data_download.py
 ```
+## Dependencies
+A yml file of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/configs/abalone.yml" >here</a>. As project develops, this yml file is subjected to change.
 
 ## Discussion of EDA Table and Figure
 A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
