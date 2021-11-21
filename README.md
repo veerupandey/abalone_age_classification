@@ -73,7 +73,7 @@ In case script is called without arguments, arguments will be fetched from confi
 python src/data/data_download.py
 ```
 ## Dependencies
-A environment file `environment.yaml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yml" >here</a>. As project develops, this `yaml` file is subjected to change.
+A environment file `environment.yaml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yaml">here</a>. As project develops, this `yaml` file is subjected to change.
 
 ## Discussion of EDA Table and Figure
 A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
