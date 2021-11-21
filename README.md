@@ -88,7 +88,7 @@ Here are some preliminary EDA table and figures that we found interesting during
 - The second EDA is on corrleation heat map. We can observe that most feature variables are highly correlated.
          ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/corr_viz_update.png)
          
-- The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
+- The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones. 
          ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
 
 
