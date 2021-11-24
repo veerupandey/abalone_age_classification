@@ -1,11 +1,12 @@
 # author: Lynn Wu
 # date: 2021-11-23
 
-"""Preprocess data from the downloaded csv data.
-Usage: data_preprocessing.py [--url=<url>] [--outputfile=<outputfile>]
+"""Perform train/test split and preprocess data from the downloaded csv data.
+Usage: data_preprocessing.py [--url=<url>] [--outputfile_train=<outputfile_train>] [--outputfile_test=<outputfile_test>]
 Options:
 [--inputfile=<inputfile>]       Input path where the data is saved locally.
-[--outputfile=<outputfile>]     Output path to save the preprocessed data locally.
+[--outputfile_train=<outputfile_train>]     Output path to save the preprocessed training data locally.
+[--outputfile_test=<outputfile_test>]     Output path to save the preprocessed test data locally.
 """
 
 import os
@@ -35,20 +36,22 @@ import sys
 
 # from utils.util import get_config
 
-def preprocess_data(inputfile, outputfile):
+def preprocess_data(inputfile, outputfile_train, outputfile_test):
     """Perform data preprocessing on the input data set.
     Parameters
     ----------
     inputfile : str
         Input file where raw data is saved.
-    outputfile : str
-        Output file to save the preprocessed data.
+    outputfile_train : str
+        Output file to save the preprocessed training data.
+    outputfile_test : str
+        Output file to save the preprocessed test data.
     Returns
     -------
     None
     """
     logger.info(f"Loading data from {inputfile}")
-    logger.info(f"Destination file: {outputfile}")
+    logger.info(f"Destination file: {outputfile_train} and {outputfile_test}")
 
     # Read in raw data and add column names
     column_names = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 
@@ -81,11 +84,11 @@ def preprocess_data(inputfile, outputfile):
     ("drop", drop_feature),
 )
 
-    preprocessor.fit(X_train)
+    preprocessor.fit(X_train, y_train)
     
     # Transformed column names
     new_columns = (
-    numeric_features
+    numerical_features
     + list(
         preprocessor.named_transformers_["onehotencoder"].get_feature_names_out(
             categorical_feature
@@ -96,29 +99,32 @@ def preprocess_data(inputfile, outputfile):
     X_train_enc = pd.DataFrame(
     preprocessor.transform(X_train), index=X_train.index, columns=new_columns
 )
+    # Combine explanatory columns with target variable into one data frame
     frames_train = [X_train_enc, y_train]
     result_train = pd.concat(frames_train)
 
-    # Fit preprocessor on test data
-    preprocessor.fit(X_test)
-
+    # Use preprocessor to transform on test data
     X_test_enc = pd.DataFrame(
     preprocessor.transform(X_test), index=X_test.index, columns=new_columns
 )
+    # Combine explanatory columns with target variable into one data frame
     frames_test = [X_test_enc, y_test]
     result_test = pd.concat(frames_test)
 
-    # TBD: write training and test data into output file path...
-    # result_train.to_csv(outputfile, index=False)
-    # result_test.to_csv(outputfile, index=False)
+    # Write training and test data into output file paths
+    result_train.to_csv(outputfile_train, index=False)
+    result_test.to_csv(outputfile_test, index=False)
+
+    logger.info(f"Training data successfully written to {outputfile_train}")
+    logger.info(f"Test data successfully written to {outputfile_test}")
 
     if __name__ == "__main__":
 
-    # Parse command line arguments
-    opt = docopt(__doc__)
+        # Parse command line arguments
+        opt = docopt(__doc__)
 
-    # Download data
-    inputfile = opt["--inputfile"]
-    outputfile = opt["--outputfile"] # train
-    outputfile = opt["--outputfile"] # test
-    preprocess_data(inputfile, outputfile)
+        # Preprocess the data
+        inputfile = opt["--inputfile"]
+        outputfile_train = opt["--outputfile_train"] # training data
+        outputfile_test = opt["--outputfile_test"] # test data
+        preprocess_data(inputfile, outputfile_train, outputfile_test)
