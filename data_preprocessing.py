@@ -23,3 +23,18 @@ import sys
 
 # from utils.util import get_config
 
+def preprocess_data(inputfile, outputfile):
+    """Perform data preprocessing on the input data set.
+    Parameters
+    ----------
+    inputfile : str
+        Input file where raw data is saved.
+    outputfile : str
+        Output file to save the preprocessed data.
+    Returns
+    -------
+    None
+    """
+    # Add column names to data frame
+    # Perform OHE on sex feature
+    # Perform StandardScaler transformation on other numerical features
