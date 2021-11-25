@@ -50,11 +50,11 @@ def main(data_file, out_dir):
     Parameters
     ----------
     input_file : string
-        the path (including file name) to the training dataset
+        the path to the training dataset
     out_dir : string
         the path to store the results
     """
-    train_df = pd.read_csv(data_file + "/train_df.csv")
+    train_df = pd.read_csv(data_file + "/train.csv")
     best_ridge, result_df = best_model(train_df)
 
     # save the best model
@@ -63,6 +63,8 @@ def main(data_file, out_dir):
     # save the hyperparameter tuning plot
     train_plot(train_results, out_dir + "cv_result.png")
     
+    # save train results as a table
+    train_df_table(train_results, out_dir + "train_results_table.png")
 
 def build_pipe():
 
@@ -102,7 +104,7 @@ def best_model(data_file):
     
     Parameters
     ----------
-    train_file : string
+    data_file : string
         Train data set file path, including filename
 
     Returns
@@ -146,7 +148,7 @@ def train_plot(train_results, out_dir):
     """Save the parameter vs score plot from train results
     Parameters
     ----------
-    result_df : pandas.core.frame.DataFrame
+    train_results : pandas.core.frame.DataFrame
         a dataframe contains hyper parameters and scores
     out_dir : string
         the path to store the plot
@@ -154,6 +156,10 @@ def train_plot(train_results, out_dir):
     train_results.plot(x = "param_logisticregression__C", y = "mean_test_score")
     plt.xscale("log")
     plt.savefig(out_dir)
+    
+
+def train_df_table(train_results, out_dir):
+    dfi.export(train_results, out_dir)
 
 if __name__ == "__main__":
     main(opt["--train_file"], opt["--out_dir"])
