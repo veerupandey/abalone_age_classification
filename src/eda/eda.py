@@ -48,7 +48,7 @@ def main(data_path, out_dir):
     """
 
     # read in the full data.
-    full_df = pd.read_csv(
+    train_df = pd.read_csv(
         data_path,
         names=[
             "Sex",
@@ -60,15 +60,10 @@ def main(data_path, out_dir):
             "Viscera weight",
             "Shell weight",
             "Rings",
+            "Is old",
         ],
         header=0,
     )
-
-    # split the data into train and test sets
-    train_df, test_df = train_test_split(full_df, test_size=0.2, random_state=123)
-
-    # convert target from a numerical variable into a caetegorical variable
-    train_df["Is old"] = np.where(train_df["Rings"] > 11, "old", "young")
 
     # If a directory path doesn't exist, create one
     os.makedirs(out_dir, exist_ok=True)
