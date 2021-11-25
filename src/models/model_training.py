@@ -1,11 +1,13 @@
 # author: Nick
 # date: 2021-11-25
 
-"""Fit a logistic regression based on input train data.
+"""
+Fit a logistic regression based on input train data.
 Save the models and coefficients in a table as png.
 Usage: model_training.py [--data_file=<data_file>] [--out_dir=<out_dir>]
+
 Options:
-[--data_file=<data_file>]        Data set file path where train and test data are saved as csv.
+[--data_file=<data_file>]        Data set file train are saved as csv.
 [--out_dir=<out_dir>]            Output path to save model, tables and images.
 """
 
@@ -38,11 +40,6 @@ from sklearn.model_selection import (
 )
 from sklearn.linear_model import LogisticRegression
 
-%matplotlib inline
-pd.set_option("display.max_colwidth", 200)
-
-opt = docopt(__doc__)
-
 
 def main(data_file, out_dir):
     """run all helper functions to find the best model and get the 
@@ -54,7 +51,7 @@ def main(data_file, out_dir):
     out_dir : string
         the path to store the results
     """
-    train_df = pd.read_csv(data_file + "/train.csv")
+    train_df = pd.read_csv(data_file)
     best_ridge, result_df = best_model(train_df)
 
     # save the best model
@@ -113,7 +110,7 @@ def best_model(data_file):
         A data frame with train score results from each model
     """
     # split train data for cross validation
-    train_df = pd.read_csv(data_file + "/train.csv")
+    train_df = pd.read_csv(data_file)
     X_train = train_df.drop(columns=['Is old'])
     y_train = train_df['Is old']
     
@@ -161,5 +158,3 @@ def train_plot(train_results, out_dir):
 def train_df_table(train_results, out_dir):
     dfi.export(train_results, out_dir)
 
-if __name__ == "__main__":
-    main(opt["--train_file"], opt["--out_dir"])
