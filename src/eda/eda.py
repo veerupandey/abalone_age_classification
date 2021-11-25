@@ -20,7 +20,7 @@ import altair as alt
 from sklearn.model_selection import train_test_split
 import os
 
-# opt = docopt(__doc__)
+opt = docopt(__doc__)
 
 
 def main(data_path, outputfile):
@@ -192,10 +192,7 @@ def get_correlation_map(train_df, outputfile):
     save(correlation_map, outputfile + "/correlation_map.png")
 
 
-path = input("Path: ")
-output = input("Output: ")
-main(path, output)
-# if __name__ == "__main__":
-#  data_path = opt[--data_path]
-#  output_file = opt[--output_file]
-#  main(data_path, output_file)
+if __name__ == "__main__":
+    data_path = opt[--data_path]
+    output_file = opt[--output_file]
+    main(data_path, output_file)
