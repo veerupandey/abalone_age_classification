@@ -47,7 +47,7 @@ def main(data_path, out_dir):
     None
     """
 
-    # read in the full data.
+    # read in the training data from the specified path.
     train_df = pd.read_csv(
         data_path,
         names=[
