@@ -66,7 +66,7 @@ def data_preprocess(inputfile, out_dir):
 
     # Data wrangling on rings column to make it a categorical variable
     df["Is old"] = np.where(df["Rings"] > 11, "old", "young")
-    df = df.drop(columns="Rings")
+    # df = df.drop(columns="Rings")
 
     # Split data into train/test sets
     train_df, test_df = train_test_split(df, test_size=0.2, random_state=123)
@@ -82,6 +82,7 @@ def data_preprocess(inputfile, out_dir):
     test_path = os.path.join(out_dir, "test.csv")
     test_df.to_csv(test_path)
     logger.info(f"Test data successfully saved to {test_path}")
+
 
 # Run the main function
 if __name__ == "__main__":
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 
     if not out_dir:
         out_dir = os.path.join(project_root, get_config("preprocess.out_dir"))
-    
+
     print(inputfile, out_dir)
 
     logger.info("Running data_preprocessing.py...")
