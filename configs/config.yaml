@@ -8,4 +8,4 @@ preprocess:
 
 eda:
   data_path: "data/processed/train.csv"
-  out_dir: "reports/eda"
+  out_dir: "results/eda"
