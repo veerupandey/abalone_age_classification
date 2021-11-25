@@ -74,7 +74,7 @@ def get_target_distribution(train_df, outputfile):
     x=alt.X("count()", title="Count"),
     y=alt.Y("Age")
   )
- save(distribution, outputfile + '/target_distribution.png')
+  save(distribution, outputfile + '/target_distribution.png')
 
 def get_histograms(train_df, outputfile):
   histogram = alt.Chart(train_df).mark_bar(
@@ -110,7 +110,10 @@ def get_correlation_map(train_df, outputfile):
     color=alt.Color("corr")
   ).properties(height=300, width=300)
   
-  correlation_map = correlation + correlation.mark_text().encode(text=alt.Text("corr", format=',.2r'), color=alt.value('black'))
+  correlation_map = correlation + correlation.mark_text().encode(
+    text=alt.Text("corr", format=',.2r'),
+    color=alt.value('black')
+    )
   save(correlation_map, outputfile + '/correlation_map.png')
 
 #if __name__ == "__main__":
