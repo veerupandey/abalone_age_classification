@@ -53,7 +53,7 @@ def main(data_file, out_dir):
     out_dir : string
         Path to directory where the test result should be saved
     """
-    test_df = pd.read_csv(data_file + "/test_df.csv")
+    test_df = pd.read_csv(data_file + "/test.csv")
     best_model = pickle.load(open(out_dir + "/best_model.sav", "rb"))
 
     # show the score of best model on test data

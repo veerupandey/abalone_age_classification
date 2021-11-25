@@ -54,7 +54,7 @@ def main(data_file, out_dir):
     out_dir : string
         the path to store the results
     """
-    train_df = pd.read_csv(data_file + "/train_df.csv")
+    train_df = pd.read_csv(data_file + "/train.csv")
     best_ridge, result_df = best_model(train_df)
 
     # save the best model
