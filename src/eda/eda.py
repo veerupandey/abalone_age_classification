@@ -7,8 +7,8 @@ and tables.
 Usage: eda.py --data_path=<data_path> --outputfile=<outputfile>
 
 Options:
---data_pathf=<data_path>
---output=<output>
+--data_pathf=<data_path>          The path to read the data in from.
+--output=<output>                 The path to save the images to.
 """
 
 # import relevant modules
