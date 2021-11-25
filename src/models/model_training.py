@@ -3,9 +3,9 @@
 
 """Fit a logistic regression based on input train data.
 Save the models and coefficients in a table as png.
-Usage: model_analysis.py [--data_file=<data_file>] [--out_dir=<out_dir>]
+Usage: model_training.py [--data_file=<data_file>] [--out_dir=<out_dir>]
 Options:
-[--data_file=<data_file>]        Data set file path while train and test data are saved as csv.
+[--data_file=<data_file>]        Data set file path where train and test data are saved as csv.
 [--out_dir=<out_dir>]            Output path to save model, tables and images.
 """
 
