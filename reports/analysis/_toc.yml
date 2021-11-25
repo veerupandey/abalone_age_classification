@@ -1,0 +1,7 @@
+format: jb-book
+root: README
+parts:
+  - chapters:
+    - file: intro.md
+    - file: content.md
+
