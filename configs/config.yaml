@@ -2,6 +2,10 @@ data:
   url: "https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
   outputfile: "data/raw/abalone.data"
 
+preprocess:
+  inputfile: "data/raw/abalone.data"
+  out_dir: "data/processed"
+
 eda:
-  data_path: "data/raw/abalone.data"
+  data_path: "data/processed/train.csv"
   out_dir: "reports/eda"
