@@ -97,7 +97,10 @@ def get_target_distribution(train_df, out_dir):
 
     # creates the distribution of target classes as a bar chart
     distribution = (
-        alt.Chart(train_df)
+        alt.Chart(
+            train_df,
+            title="There is a greater number of young abalones than old abalones in the training data",
+        )
         .mark_bar()
         .encode(x=alt.X("count()", title="Count"), y=alt.Y("Is old"))
     )
@@ -129,7 +132,10 @@ def get_histograms(train_df, out_dir):
 
     # creates the distribution for each numerical feature for both target classes
     histogram = (
-        alt.Chart(train_df)
+        alt.Chart(
+            train_df,
+            title="Distributions of numerical features with each class of the target",
+        )
         .mark_bar(opacity=0.4)
         .encode(
             x=alt.X(alt.repeat(), type="quantitative", bin=alt.Bin(maxbins=50)),
@@ -185,7 +191,9 @@ def get_correlation_map(train_df, out_dir):
 
     # create correlation map
     correlation = (
-        alt.Chart(corr_df)
+        alt.Chart(
+            corr_df, title="Many features and the target (rings) are highly correlated"
+        )
         .mark_rect()
         .encode(
             x=alt.X("level_0", title=None),
