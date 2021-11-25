@@ -11,7 +11,7 @@ Options:
 --output=<output>
 '''
 
-
+# import relevant modules
 from docopt import docopt 
 import numpy as np
 import pandas as pd
@@ -24,14 +24,20 @@ import os
 opt = docopt(__doc__)
 
 def main(train_path, outputfile):
+  '''Calls all functions to create the exploratory data visualizations from 
+  the training data and saves them as png files at a specified location.
+
+  Parameters
+  __________
+  train_path : str
+    Path that reads in the training data.
+  outputfile: str
+    Path where the figure should be saved.
   
-  # Read in data as a dataframe
-  train_df = pd.read_csv(train_path)
-  
-  # If a directory path doesn't exist, create one
-  if not os.path.exists(os.path.dirname(outputfile)):
-    os.makedirs(os.path.dirname(outputfile)) 
-        
+  Returns
+  _______
+  None
+  '''
   # Develop human-readable column names
   cols = [
     "Sex",
@@ -46,6 +52,17 @@ def main(train_path, outputfile):
     "Age"
   ]
   
+  # Read in data as a dataframe
+  train_df = pd.read_csv(
+    train_path,
+    names=cols,
+    header=0
+    )
+  
+  # If a directory path doesn't exist, create one
+  if not os.path.exists(os.path.dirname(outputfile)):
+    os.makedirs(os.path.dirname(outputfile)) 
+        
   # Develop and save summary statistic table
   get_summary_table(train_df, outputfile)
   
@@ -57,26 +74,49 @@ def main(train_path, outputfile):
   
   # Obtains correlation map
   get_correlation_map(train_df, outputfile)
-
-def get_summary_table(train_df, outputfile):
-  summary_table = train_df.describe() # get summary table
-  
-  axis = plt.subplot(frame_on=False) # remove frame
-  axis.xaxis.set_visible(False)  # remove x axis
-  axis.yaxis.set_visible(False)  # remove y axis
-
-  table(axis, summary_table)
-
-  plt.savefig(outputfile + '/summary_table.png') # issue with saving file
   
 def get_target_distribution(train_df, outputfile):
+  '''Obtains the distribution of target classes as a bar chart
+  and saves the figure as a png file at a specified location.
+
+  Parameters
+  __________
+  train_df : pd.DataFrame
+    Training data as a pandas dataframe.
+  outputfile: str
+    Path where the figure should be saved.
+  
+  Returns
+  _______
+  None
+  '''
+
+  # creates the distribution of target classes as a bar chart
   distribution = alt.Chart(train_df).mark_bar().encode(
     x=alt.X("count()", title="Count"),
     y=alt.Y("Age")
   )
+
+  # saves the target class distribution figure at the specified location as target_distribution.png
   save(distribution, outputfile + '/target_distribution.png')
 
 def get_histograms(train_df, outputfile):
+  '''Obtains the distributions of the numerical features as a histogram
+  and saves the figure as a png file at a specified location
+
+  Parameters
+  __________
+  train_df : pd.DataFrame
+    Training data as a pandas dataframe.
+  outputfile: str
+    Path where the figure should be saved.
+  
+  Returns
+  _______
+  None
+  '''
+
+  # creates the distribution for each numerical feature for both target classes
   histogram = alt.Chart(train_df).mark_bar(
     opacity=0.4
   ).encode(
@@ -94,9 +134,27 @@ def get_histograms(train_df, outputfile):
     ],
     columns=2
   )
+  
+  # Saves the histogram at the specified location as histograms.png
   save(histogram, outputfile + '/histograms.png')
 
 def get_correlation_map(train_df, outputfile):
+  '''Obtains the correlations between all numerical features and the target
+  as a correlation map and saves the figure as a png at the specified location
+
+  Parameters
+  __________
+  train_df : pd.DataFrame
+    Training data as a pandas dataframe.
+  outputfile: str
+    Path where the figure should be saved.
+  
+  Returns
+  _______
+  None
+  '''
+  
+  # determine correlation values between each numerical feature/target
   corr_df = (
     train_df.drop(["Sex", "Age"], axis=1)
     .corr("spearman")
@@ -104,20 +162,22 @@ def get_correlation_map(train_df, outputfile):
     .stack()
     .reset_index(name="corr")
   )
+  
+  # create correlation map
   correlation = alt.Chart(corr_df).mark_rect().encode(
     x=alt.X("level_0", title=None),
     y=alt.Y("level_1", title=None),
     color=alt.Color("corr")
   ).properties(height=300, width=300)
   
+  # add labels for each correlation value
   correlation_map = correlation + correlation.mark_text().encode(
     text=alt.Text("corr", format=',.2r'),
     color=alt.value('black')
     )
+  
+  # saves the correlation map at a specified location as correlation_map.png 
   save(correlation_map, outputfile + '/correlation_map.png')
 
-#if __name__ == "__main__":
-  #main(opt[--train_path], opt[--output_file])
-  
-df = pd.read_csv('../../data/raw/abalone.data')
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=123)
+if __name__ == "__main__":
+  main(opt[--train_path], opt[--output_file])
