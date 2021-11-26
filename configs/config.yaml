@@ -9,3 +9,11 @@ preprocess:
 eda:
   data_path: "data/processed/train.csv"
   out_dir: "results/eda"
+  
+model:
+  train:
+      data_file: "data/processed/train.csv"
+      out_dir: "results/model"
+  test:
+      data_file: "data/processed/test.csv"
+      out_dir: "results/model"

@@ -18,7 +18,7 @@ project_root = str(Path(__file__).parents[2])
 sys.path.append(project_root)
 
 import os
-import docopt
+from docopt import docopt
 import IPython
 import ipywidgets as widgets
 import matplotlib.pyplot as plt
@@ -51,7 +51,6 @@ from utils.util import get_config, get_logger
 # Define logger
 logger = get_logger()
 
-
 def main(data_file, out_dir):
     """run all helper functions to find the best model and get the 
     hyperparameter tuning result
@@ -62,9 +61,12 @@ def main(data_file, out_dir):
     out_dir : string
         the path to store the results
     """
+    # If a directory path doesn't exist, create one
+    os.makedirs(out_dir, exist_ok=True)
+    
     train_df = pd.read_csv(data_file)
     pipe = build_pipe()
-    best_model, train_results = best_model(train_df, pipe)
+    best_model, train_results = fit_model(train_df, pipe)
 
     # save the best model
     pickle.dump(best_model, open(out_dir + "/best_model.sav", "wb"))
@@ -112,7 +114,7 @@ def build_pipe():
     return pipe
 
 
-def best_model(train_df, pipe):
+def fit_model(train_df, pipe):
     """Train the logistic model by using random search
     with cross validation
     
@@ -137,12 +139,10 @@ def best_model(train_df, pipe):
     param_grid = {"logisticregression__C": 10.0 ** np.arange(-3, 4)}
     
     # fit model
-    random_search = RandomizedSearchCV(pipe,
-                                       param_distributions = param_grid,
-                                       n_jobs = -1,
-                                       n_iter = 10,
-                                       cv = 5,
-                                       random_state = 123)
+    random_search = GridSearchCV(pipe,
+                                 param_grid = param_grid,
+                                 n_jobs = -1,
+                                 cv = 5)
     random_search.fit(pd.DataFrame(X_train), y_train)
     
     # create output dataframe
@@ -172,26 +172,21 @@ def train_plot(train_results, out_dir):
         the path to store the plot
     """
     logger.info("Making train results plot...")
-    
-#     path = os.path.join(out_dir, "cv_result.png")
     train_results.plot(x = "param_logisticregression__C", y = "mean_test_score")
     plt.xscale("log")
     plt.savefig(out_dir)
-    
     logger.info(f"Train results plot saved to {out_dir}")
 
+
 def train_df_table(train_results, out_dir):
-    
+
     logger.info("Making train results table...")
-    
     path = os.path.join(out_dir, "train_result_table.png")
     dfi.export(train_results, path)
-    
     logger.info(f"Train results table saved to {out_dir}")
 
+
 if __name__ == "__main__":
-    
-    print(__doc__)
 
     # Parse command line parameters
     opt = docopt(__doc__)
@@ -201,14 +196,14 @@ if __name__ == "__main__":
 
     # Read it from config file
     # if command line arguments are missing
-#     if not data_path:
-#         data_path = os.path.join(project_root, get_config("eda.data_path"))
+    if not data_file:
+        data_file = os.path.join(project_root, get_config("model.train.data_file"))
 
-#     if not out_dir:
-#         out_dir = os.path.join(project_root, get_config("eda.out_dir"))
+    if not out_dir:
+        out_dir = os.path.join(project_root, get_config("model.train.out_dir"))
 
     # Run the main function
     logger.info("Running training...")
-    main(data_path, out_dir)
+    main(data_file, out_dir)
     logger.info("Training script successfully completed. Exiting!")
 
