@@ -62,7 +62,7 @@ def data_preprocess(inputfile, out_dir):
         "Rings",
     ]
 
-    df = pd.read_csv(inputfile, names=column_names)
+    df = pd.read_csv(inputfile, skiprows=1, names=column_names)
 
     # Data wrangling on rings column to make it a categorical variable
     df["Is old"] = np.where(df["Rings"] > 11, "old", "young")
@@ -76,7 +76,7 @@ def data_preprocess(inputfile, out_dir):
 
     # Write training and test data into output directory
     train_path = os.path.join(out_dir, "train.csv")
-    train_df.to_csv(train_path)
+    train_df.to_csv(train_path, index=False)
     logger.info(f"Training data successfully saved to {train_path}")
 
     test_path = os.path.join(out_dir, "test.csv")
