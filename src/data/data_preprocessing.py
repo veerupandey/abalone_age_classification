@@ -80,7 +80,7 @@ def data_preprocess(inputfile, out_dir):
     logger.info(f"Training data successfully saved to {train_path}")
 
     test_path = os.path.join(out_dir, "test.csv")
-    test_df.to_csv(test_path)
+    test_df.to_csv(test_path, index=False)
     logger.info(f"Test data successfully saved to {test_path}")
 
 
