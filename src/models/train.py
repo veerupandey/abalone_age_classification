@@ -51,7 +51,6 @@ from utils.util import get_config, get_logger
 # Define logger
 logger = get_logger()
 
-
 def main(data_file, out_dir):
     """run all helper functions to find the best model and get the 
     hyperparameter tuning result
@@ -173,25 +172,22 @@ def train_plot(train_results, out_dir):
         the path to store the plot
     """
     logger.info("Making train results plot...")
-    
-#     path = os.path.join(out_dir, "cv_result.png")
     train_results.plot(x = "param_logisticregression__C", y = "mean_test_score")
     plt.xscale("log")
     plt.savefig(out_dir)
-    
     logger.info(f"Train results plot saved to {out_dir}")
 
+
 def train_df_table(train_results, out_dir):
-    
+
     logger.info("Making train results table...")
-    
     path = os.path.join(out_dir, "train_result_table.png")
     dfi.export(train_results, path)
-    
     logger.info(f"Train results table saved to {out_dir}")
 
+
 if __name__ == "__main__":
-    
+
     # Parse command line parameters
     opt = docopt(__doc__)
 

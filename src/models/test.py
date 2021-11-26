@@ -50,7 +50,7 @@ def main(data_file, out_dir):
     # show the coefficients of best model
     coeff_plot(best_model, out_dir)
 
-    
+
 def test_model(best_model, test_df):
     """test the model on test dataset
     Parameters
@@ -65,7 +65,6 @@ def test_model(best_model, test_df):
         score
     """
     logger.info("Testing on test set...")
-    
     X_test = test_df.drop(columns=['Is old'])
     y_test = test_df['Is old']
     return best_model.score(X_test, y_test)
@@ -80,7 +79,6 @@ def coeff_plot(best_model, out_dir):
         Path to directory where the test result should be saved
     """
     logger.info("Drawing bar plot for coefficents...")
-    
     feature_names = np.array(best_model[:-1].get_feature_names_out())
     coeffs = best_model.named_steps["logisticregression"].coef_.flatten()
     coeff_df = pd.DataFrame(coeffs, index=feature_names, columns=["Coefficient"])
@@ -88,7 +86,8 @@ def coeff_plot(best_model, out_dir):
     dfi.export(coeff_df_sorted, out_dir + "/coeff_sorted.png")
     mglearn.tools.visualize_coefficients(coeffs, feature_names, n_top_features=5)
     plt.savefig(out_dir + "/coeff_bar.png")
-    
+
+
 if __name__ == "__main__":
 
     # Parse command line parameters
