@@ -71,6 +71,9 @@ def main(data_path, out_dir):
     # Creates and saves figure showing distribution of target classes
     get_target_distribution(train_df, out_dir)
 
+    # Creates and saves figure showing the distribution of sexes
+    get_sex_distribution(train_df, out_dir)
+
     # Obtains distribution of numerical variables
     get_histograms(train_df, out_dir)
 
@@ -96,15 +99,21 @@ def get_target_distribution(train_df, out_dir):
     logger.info("Running get_target_distribution...")
 
     # creates the distribution of target classes as a bar chart
-    distribution = (
+    bars = (
         alt.Chart(
             train_df,
             title="There is a greater number of young abalones than old abalones in the training data",
         )
         .mark_bar()
-        .encode(x=alt.X("count()", title="Count"), y=alt.Y("Is old"))
+        .encode(
+            x=alt.X("count()", title="Count", axis=alt.Axis(grid=False)),
+            y=alt.Y("Is old", axis=alt.Axis(grid=False)),
+        )
     )
 
+    distribution = (
+        bars + bars.mark_text(dx=12).encode(text="count()", color=alt.value("black"))
+    ).configure_view(strokeWidth=0)
     # saves the target class distribution figure
     # at the specified location as target_distribution.png
     path = os.path.join(out_dir, "target_distribution.png")
@@ -132,10 +141,7 @@ def get_histograms(train_df, out_dir):
 
     # creates the distribution for each numerical feature for both target classes
     histogram = (
-        alt.Chart(
-            train_df,
-            title="Distributions of numerical features with each class of the target",
-        )
+        alt.Chart(train_df)
         .mark_bar(opacity=0.4)
         .encode(
             x=alt.X(alt.repeat(), type="quantitative", bin=alt.Bin(maxbins=50)),
@@ -154,12 +160,63 @@ def get_histograms(train_df, out_dir):
             ],
             columns=2,
         )
+        .properties(
+            title=alt.TitleParams(
+                text="Distributions of numerical features with each class of the target in the training data",
+                anchor="middle",
+            )
+        )
     )
 
     # Saves the histogram at the specified location as histograms.png
     path = os.path.join(out_dir, "histograms.png")
     histogram.save(path)
     logger.info(f"Histogram chart successfully saved to {path}")
+
+
+def get_sex_distribution(train_df, out_dir):
+    """Obtains the distribution of the sex feature as a bar chart
+     and saves the figure as a png at the specified location
+
+    Parameters
+    __________
+    train_df : pd.DataFrame
+      Training data as a pandas dataframe.
+    out_dir: str
+      Path where the figure should be saved.
+
+    Returns
+    _______
+    None
+    """
+
+    logger.info("Running get_sex_distribution...")
+
+    # determine distribution of the sex feature
+    bars = (
+        alt.Chart(train_df)
+        .mark_bar()
+        .encode(
+            x=alt.X("count()", title="Count", axis=alt.Axis(grid=False)),
+            y=alt.Y("Sex", axis=alt.Axis(grid=False)),
+            color="Is old",
+        )
+    )
+
+    distribution = (
+        (bars + bars.mark_text(dx=12).encode(text="count()", color=alt.value("black")))
+        .facet(
+            "Is old",
+            columns=1,
+            title="The distribution of the sex feature in the training data",
+        )
+        .configure_view(strokeWidth=0)
+    )
+
+    # Saves the distribution at the specified location as sex_dist.png
+    path = os.path.join(out_dir, "sex_dist.png")
+    distribution.save(path)
+    logger.info(f"Sex distribution chart successfully saved to {path}")
 
 
 def get_correlation_map(train_df, out_dir):
@@ -192,7 +249,7 @@ def get_correlation_map(train_df, out_dir):
     # create correlation map
     correlation = (
         alt.Chart(
-            corr_df, title="Many features and the target (rings) are highly correlated"
+            corr_df, title="Many features and the target, rings, are highly correlated"
         )
         .mark_rect()
         .encode(
