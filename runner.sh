@@ -28,4 +28,7 @@ python src/models/train.py --data_file="data/processed/train.csv" --out_dir="res
 echo "Running test script"
 python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 
+# Run jupyter book
+jupyter-book build docs
+
 echo "Exiting! Script successfully completed."
