@@ -37,7 +37,7 @@ The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_cl
 
 ### Create project evironment
 
-Project `python` environment needs to be created before running the analysis.
+Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
 
 ```bash
 conda env create -f environment.yml
@@ -46,7 +46,7 @@ conda activate abalone
 
 ### Run analysis end to end
 
-To run the analysis end to end, run the script `runner.sh` as follows. Script `runner.sh` runs each individual script one at a time.
+To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
 
 ```bash
 nohup bash runner.sh > runner.log &
@@ -54,7 +54,7 @@ nohup bash runner.sh > runner.log &
 
 ### (Optional) Run individual script
 
-To run modules individually, please follow the instruction below.
+To run modules individually, please follow the instructions below. All the scripts should be run from project root directory.
 
 #### 1. Download the data
 
