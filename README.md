@@ -62,17 +62,81 @@ Last updated: Nov 21st, 2021
     The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/reports/reports.md" >here</a>. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
 
 ## Usage
-To download the data, run the script below.
+
+### Create project evironment
+
+Project `python` environment needs to be created before running the analysis.
+
+```bash
+conda env create -f environment.yml
+conda activate abalone
+```
+
+### Run analysis end to end
+
+To run the analysis end to end, run the script `runner.sh` as follows. Script `runner.sh` runs each individual script one at a time.
+
+```bash
+nohup bash runner.sh > runner.log &
+```
+
+### (Optional) Run individual script
+
+To run modules individually, please follow the instruction below.
+
+**1. Download the data**
+
+To download the data, run the command as follows..
 
 ```bash
 python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
 ```
-In case script is called without arguments, arguments will be fetched from config file.
+
+**2. Data prerocessing**
+
+Run the data preprocessing script as follows.
 
 ```bash
-python src/data/data_download.py
+python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
 ```
+
+**3. Exploratory data analysis (EDA)**
+
+Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
+
+```bash
+python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
+```
+
+**4. Train the model**
+
+To train the model, run the script `src/models/train.py` as follows.
+
+```bash
+python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
+```
+
+**5. Test and evaluate model performance**
+
+To generate the model test and evaluation report, run the script `src/models/test.py`.
+
+```bash
+python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
+```
+
+**6. Publish the reports**
+
+Our final analysis report is published as jupyter book and available in directory `docs`.
+
+To create the contents of jupyter book, execute the command mentioned below.
+
+```bash
+jupyter-book build docs
+```
+
+**_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 ## Dependencies
+
 A environment file `environment.yaml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yaml">here</a>. As project develops, this `yaml` file is subjected to change.
 
 ## Discussion of EDA Table and Figure
