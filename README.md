@@ -84,7 +84,7 @@ nohup bash runner.sh > runner.log &
 
 To run modules individually, please follow the instruction below.
 
-**1. Download the data**
+#### 1. Download the data
 
 To download the data, run the command as follows..
 
@@ -92,7 +92,7 @@ To download the data, run the command as follows..
 python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
 ```
 
-**2. Data prerocessing**
+#### 2. Data prerocessing
 
 Run the data preprocessing script as follows.
 
@@ -100,7 +100,7 @@ Run the data preprocessing script as follows.
 python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
 ```
 
-**3. Exploratory data analysis (EDA)**
+#### 3. Exploratory data analysis (EDA)
 
 Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
 
@@ -108,7 +108,7 @@ Script `src/eda/eda.py` generates EDA reports and save it to the specified locat
 python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
 ```
 
-**4. Train the model**
+#### 4. Train the model
 
 To train the model, run the script `src/models/train.py` as follows.
 
@@ -116,7 +116,7 @@ To train the model, run the script `src/models/train.py` as follows.
 python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
 ```
 
-**5. Test and evaluate model performance**
+#### 5. Test and evaluate model performance
 
 To generate the model test and evaluation report, run the script `src/models/test.py`.
 
@@ -124,7 +124,7 @@ To generate the model test and evaluation report, run the script `src/models/tes
 python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 ```
 
-**6. Publish the reports**
+#### 6. Publish the reports
 
 Our final analysis report is published as jupyter book and available in directory `docs`.
 
@@ -135,9 +135,10 @@ jupyter-book build docs
 ```
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
+
 ## Dependencies
 
-A environment file `environment.yaml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yaml">here</a>. As project develops, this `yaml` file is subjected to change.
+A environment file `environment.yml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yml">here</a>. As project develops, this `yaml` file is subjected to change.
 
 ## Discussion of EDA Table and Figure
 A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
