@@ -10,7 +10,7 @@
 
 # Download data
 echo "Downloading data"
-python  src/data/data_download.py  --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw1/abalone.data"
+python  src/data/data_download.py  --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
 
 # Data preprocessing
 echo "Running data preprocessing script"
@@ -18,7 +18,7 @@ python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_
 
 # EDA
 echo "Running eda script"
-python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
+python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="results/eda"
 
 # Train
 echo "Running training script"
@@ -30,5 +30,8 @@ python src/models/test.py --data_file="data/processed/test.csv" --out_dir="resul
 
 # Run jupyter book
 jupyter-book build docs
+
+# Publish jupyter book on github pages
+ghp-import -n -p -f docs/_build/html
 
 echo "Exiting! Script successfully completed."

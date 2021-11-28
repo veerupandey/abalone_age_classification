@@ -24,4 +24,4 @@ Last updated: Nov 21st, 2021
 
 -   **Report**
 
-    The final report can be found [here](https://github.com/UBC-MDS/abalone_age_classification/blob/main/reports/reports.md). The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+    The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html). The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.

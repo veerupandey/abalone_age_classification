@@ -77,7 +77,7 @@ python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_
 Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
 
 ```bash
-python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
+python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="results/eda"
 ```
 
 #### 4. Train the model
@@ -96,7 +96,7 @@ To generate the model test and evaluation report, run the script `src/models/tes
 python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 ```
 
-#### 6. Publish the reports
+#### 6. Build the report
 
 Our final analysis report is published as jupyter book and available in directory `docs`.
 
@@ -105,6 +105,23 @@ To create the contents of jupyter book, execute the command mentioned below.
 ```bash
 jupyter-book build docs
 ```
+
+#### 7. Publish the report
+
+Reports can be published as github pages. 
+
+URL should start with the username. Example:-
+
+`https://<username>.github.io/abalone_age_classification/README.html`
+
+To publish the report, run the command mentioned below.
+
+```bash
+ghp-import -n -p -f docs/_build/html
+```
+
+Our report for this anlysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
+
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 
@@ -120,22 +137,8 @@ A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_a
 This dataset is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. This allows for the sharing and adaptation of the datasets for any purpose, provided that the appropriate credit is given.
 
 
-## Bibliography
+## References
 
 ```{bibliography} references.bib
 :all:
 ```
-
-## References
-
-- Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-
-- Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) "The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait", Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
-
-- David Clark, Zoltan Schreter, Anthony Adams "A Quantitative Comparison of Dystal and Backpropagation", Australian Conference on Neural Networks (ACNN'96)
-
-- Under Southern Seas: The Ecology of Australia's Rocky Reefs. (1999). United States: UNSW Press.
-
-- Python Software Foundation. Python Language Reference, version 2.7. Available at http://www.python.org
-
-- RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.
