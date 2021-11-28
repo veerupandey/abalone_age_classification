@@ -108,7 +108,12 @@ jupyter-book build docs
 
 #### 7. Publish the report
 
-Reports can be published as github pages. Url should look like - https://<username>.github.io/abalone_age_classification/README.html
+Reports can be published as github pages. 
+
+Url should start with the username. Example:- 
+`https://<username>.github.io/abalone_age_classification/README.html`
+
+To publish the report, run the command mentioned below.
 
 ```bash
 ghp-import -n -p -f docs/_build/html
