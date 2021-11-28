@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abalone Age Classification Project Report &#8212; Abalone Age Classification</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project Proposal" href="proposal.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Abalone Age Classification</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Abalone Age Classifier
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Proposal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="proposal.html">
+   Project Proposal
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Report
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Abalone Age Classification Project Report
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Project_report_milestone2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/veerupandey/abalone_age_classification"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/veerupandey/abalone_age_classification/issues/new?title=Issue%20on%20page%20%2FProject_report_milestone2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/veerupandey/abalone_age_classification/main?urlpath=tree/docs/Project_report_milestone2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-the-data-set">
+   About the data set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#findings-and-results">
+   Findings and results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpretations">
+   Interpretations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-and-assumptions">
+   Limitations and assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#future-directions">
+   Future directions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="abalone-age-classification-project-report">
+<h1>Abalone Age Classification Project Report<a class="headerlink" href="#abalone-age-classification-project-report" title="Permalink to this headline">¶</a></h1>
+<p>This report is for the data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia. Content includes key exploratory data analysis, statistical summaries and figures.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Abalones are endangered marine snails that are found in the cold coastal water around the world. The price of an abalone is positively associated with its age. However, determining how old an abalone is a very complex process. Having a machine learning model that classifies the age of abalones will efficiently accelerate this manual process, and benefit researches on abalones and add value to the domain.</p>
+<p>In this project we are classifying abalone snails into “young” and “old” according to their number of rings based on input features such as abalone’s gender, height with meat in shell, weight of the shell etc.</p>
+</div>
+<div class="section" id="about-the-data-set">
+<h2>About the data set<a class="headerlink" href="#about-the-data-set" title="Permalink to this headline">¶</a></h2>
+<p>The Abalone data set that was used in this project was sourced from the UC
+Irvine Machine Learning Repository published in 1995. It can be
+found <a href="https://archive-beta.ics.uci.edu/ml/datasets/abalone" >here</a>. Each row in
+the data set represents the attributes and physical measurements of
+abalones including number of rings, sex, length, diameter, height, weight,
+etc. The number of rings were
+counted manually using a microscope by the researchers. The age of an abalone is represented by its number of
+rings plus 1.5 as number of years lived.
+The data set has already removed its missing values and the range of the continuous values have been scaled for use with an ANN (by dividing by 200).</p>
+<p>In the research paper “A Quantitative Comparison of Dystal and Backpropagation” that David Clark, Zoltan Schreter and Anthony Adams submitted to the Australian Conference on Neural Networks (ACNN’96), the original abalone data set was treated as a 3-category classification problem (grouping ring classes 1-8, 9 and 10, and 11 on). In our project, we will treat the data set as a 2-categorical classification problem (grouping ring classes less or equal to 11, and more than 11).</p>
+<p>Here, we aim to answer one research question with a Logistic Regression classification model:</p>
+<ul class="simple">
+<li><p><strong>Given the input features (sex, longest shell measurement, diameter perpendicular to length, height with meat in shell, whole weight, weight of meat, gut weight after bleeding, shell weight after being dried), is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?</strong></p></li>
+</ul>
+</div>
+<div class="section" id="findings-and-results">
+<h2>Findings and results<a class="headerlink" href="#findings-and-results" title="Permalink to this headline">¶</a></h2>
+<p>The young-old class is determined by the number of rings present on the abalone. Moreover, a threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code> was set such that abalones that contained greater than 11 rings would be placed in the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and otherwise the abalone would be placed in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. Using this threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code>, all of the examples of abalone in the training and test data were split into either the <code class="docutils literal notranslate"><span class="pre">old</span></code> class or the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. To determine any indications of class imbalance based on this threshold, we explored the distribution of target classes (<code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code>) in the training data (Figure 1). Indeed, the distribution indicates a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes within the training data. More specifically, there are 2,576 examples of the class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, whereas there are only 766 examples of the class, <code class="docutils literal notranslate"><span class="pre">old</span></code>, within the training data. This is an important component of the training data that needs to be kept in mind as the analysis is followed through.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/target_distribution.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_5_0.png" src="_images/Project_report_milestone2_5_0.png" />
+</div>
+</div>
+<p>Figure 1. Distribution of target classes, young and old, for abalone in the training data</p>
+<p>Next, we looked to elaborate upon the distribution of numerical features in the training data in relation to the target class (Figure 2). The distribution of the numerical features seemed to follow a similar shape for both the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. The distribution of the length and diameter features was left-skewed, while the whole weight, viscera weight, shucked weight, and shell weigth appeared to have a right-skewed distribution. The height feature did not have a clear skewness to the distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/histograms.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_8_0.png" src="_images/Project_report_milestone2_8_0.png" />
+</div>
+</div>
+<p>Figure 2. Distributions of numerical features for both the young and old class of abalone</p>
+<p>Observing the distribution of sexes in the training data, there appears to be a relatively even spread of <code class="docutils literal notranslate"><span class="pre">Female</span></code> (F), <code class="docutils literal notranslate"><span class="pre">Male</span></code> (M) within both the <code class="docutils literal notranslate"><span class="pre">young</span></code> and <code class="docutils literal notranslate"><span class="pre">old</span></code> target classes, whereas there are a greater number of <code class="docutils literal notranslate"><span class="pre">Infant</span></code> (I) examples in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class compared to the <code class="docutils literal notranslate"><span class="pre">old</span></code> class (Figure 3). Specifically, there were 354 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Male</span></code> and 340 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Female</span></code> in the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and there were 882 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Male</span></code> and 684 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Female</span></code> in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. For the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> class, there was a greater number of examples of <code class="docutils literal notranslate"><span class="pre">Infant</span></code> in the young class (1009) compared to the <code class="docutils literal notranslate"><span class="pre">old</span></code> class (72).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/sex_dist.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1299</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1300</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj, include, exclude)</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span> 
+<span class="g g-Whitespace">    </span><span class="mi">969</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">970</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_repr_mimebundle_</span><span class="nt">(self, include, exclude)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1288</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1289</span>             <span class="n">mimetype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mimetype</span>
+<span class="ne">-&gt; </span><span class="mi">1290</span>             <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">(</span><span class="n">always_both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1291</span>             <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1292</span>                 <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="n">metadata</span><span class="p">}</span>
+
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1300</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1302</span>             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>                 <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;../results/eda/sex_dist.png&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1299</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1300</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_repr_png_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1318</span>     <span class="k">def</span> <span class="nf">_repr_png_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1319</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FMT_PNG</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1320</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1321</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1322</span>     <span class="k">def</span> <span class="nf">_repr_jpeg_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/Downloads/yes/envs/abalone/lib/python3.10/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1300</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1302</span>             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>                 <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;../results/eda/sex_dist.png&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Figure 3. The distribution of sexes for both classes, young and old, of abalone in the training data</p>
+<p>Since the target classes, <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code>, are directly determined by counting the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code>, we were able to determine the correlation of numerical features with the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code>, as well as the correlation amongst other features (Figure 4). Based on the correlation values, many of the features are highly correlated with other features. As for correlation with <code class="docutils literal notranslate"><span class="pre">rings</span></code>, the <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">weight</span></code> seemed to have the greatest correlation value (0.69) with <code class="docutils literal notranslate"><span class="pre">rings</span></code>, while <code class="docutils literal notranslate"><span class="pre">Shucked</span> <span class="pre">weight</span></code> appeared to have the lowest correlation with <code class="docutils literal notranslate"><span class="pre">rings</span></code> (0.54). Based on the correlation heat map, it appears that the numerical features are at least moderately correlated with <code class="docutils literal notranslate"><span class="pre">rings</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/correlation_map.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_14_0.png" src="_images/Project_report_milestone2_14_0.png" />
+</div>
+</div>
+<p>Figure 4. Correlations between numerical features and the number of rings in an abalone in the training data</p>
+</div>
+<div class="section" id="interpretations">
+<h2>Interpretations<a class="headerlink" href="#interpretations" title="Permalink to this headline">¶</a></h2>
+<p>An important note about the training data is that there exists a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> target classes. With more examples of the target class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, this could have an affect on the accuracy of the model. Because of this fact, we may considered additional scoring metrics in addition to accuracy, such as recall, precision, and f1 score to account for this class imbalance.</p>
+<p>Observing the distributions of the numerical features gives some insight into some of the distinctions between the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and <code class="docutils literal notranslate"><span class="pre">young</span></code> class of abalone. For example, when abalone are <code class="docutils literal notranslate"><span class="pre">old</span></code>, there are only a few examples where the abalone <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38, whereas the <code class="docutils literal notranslate"><span class="pre">young</span></code> class has many examples of abalone where their <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38. Another example that is observable is that for the <code class="docutils literal notranslate"><span class="pre">diameter</span></code> feature, there are few examples of <code class="docutils literal notranslate"><span class="pre">old</span></code> abalone that contain a <code class="docutils literal notranslate"><span class="pre">diameter</span></code> less than 0.30, while <code class="docutils literal notranslate"><span class="pre">young</span></code> abalone have a number of examples where their <code class="docutils literal notranslate"><span class="pre">diameter</span></code> is less than 0.30.</p>
+<p>There is a relatively even distribution between the <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within each of the target classes, <code class="docutils literal notranslate"><span class="pre">young</span></code> and <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected behaviour of the distribution between <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code>, as there likely isn’t any bias toward one sex within this organism. However, the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category of the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature has a greater number of examples that are <code class="docutils literal notranslate"><span class="pre">young</span></code> compared to <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected, since <code class="docutils literal notranslate"><span class="pre">Infants</span></code> are expected to be younger abalone. The indistinct distribution of <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within the <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes likely doesn’t provide any predictive value to our model. Additionally, since the objective of the model is to predict whether an abalone is <code class="docutils literal notranslate"><span class="pre">young</span></code> or <code class="docutils literal notranslate"><span class="pre">old</span></code>, it may not make sense to include the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature in the model as the presence of the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category within the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature would make this classification model redundant.</p>
+<p>The correlation map provides useful information in determining what feature might be valuable for predicting whether an abalone is <code class="docutils literal notranslate"><span class="pre">old</span></code> or <code class="docutils literal notranslate"><span class="pre">young</span></code>. Since many of the numerical features seem to be at least moderately correlated with the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code> (which directly determines age of abalone), many of these numerical features are likely useful to include in our model.</p>
+</div>
+<div class="section" id="limitations-and-assumptions">
+<h2>Limitations and assumptions<a class="headerlink" href="#limitations-and-assumptions" title="Permalink to this headline">¶</a></h2>
+<p>One limitation is that we found some of the input features are highly correlated. For example, the correlation between <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> of abalone is 0.97, indicating that these two features are highly positively correlated. This will potentially raise the multicollinearity concern. As a result, it can become difficult for the model to estimate the relationship between each independent variable and the dependent variable independently.</p>
+<p>Since our primary goal is to make classification on the abalone age (old or young), and we don’t need to understand the role of each independent variable such as <code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, we did not take additional actions to reduce the multicollinearity problem in this project.</p>
+<p>Also, the <code class="docutils literal notranslate"><span class="pre">infant</span></code> category for <code class="docutils literal notranslate"><span class="pre">Sex</span></code> of a abalone is included in this project. In future additional analysis, we would remove this category, considering the fact that being an infant indicates being at young age for an abanlone.</p>
+<p>Another limitation might be that the authors of this project lack the domain knowledge to feature engineer the model inputs. We included all features in the data set in our classification model for predicting age. Additional feature engineering given domain knowledge would potentially improve the model accuracy.</p>
+</div>
+<div class="section" id="future-directions">
+<h2>Future directions<a class="headerlink" href="#future-directions" title="Permalink to this headline">¶</a></h2>
+<p>Future analyses can be performed to improve this classification model. For example, we are interested in adding additional features such as: the geographical location where the abalones are collected, abalone species, color, number of predators and living environment etc. Consultation with domain experts must also be considered for appropriate and accurate analysis directions.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a class="reference external" href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science.</p></li>
+<li><p>Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) “The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait”, Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)</p></li>
+<li><p>David Clark, Zoltan Schreter, Anthony Adams “A Quantitative Comparison of Dystal and Backpropagation”, Australian Conference on Neural Networks (ACNN’96)</p></li>
+<li><p>Under Southern Seas: The Ecology of Australia’s Rocky Reefs. (1999). United States: UNSW Press.</p></li>
+<li><p>Python Software Foundation. Python Language Reference, version 2.7. Available at <a class="reference external" href="http://www.python.org">http://www.python.org</a></p></li>
+<li><p>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL <a class="reference external" href="http://www.rstudio.com/">http://www.rstudio.com/</a>.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="proposal.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Project Proposal</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By DSCI_522_GROUP28<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
