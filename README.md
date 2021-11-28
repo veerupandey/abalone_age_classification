@@ -96,7 +96,7 @@ To generate the model test and evaluation report, run the script `src/models/tes
 python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 ```
 
-#### 6. Publish the reports
+#### 6. Build the report
 
 Our final analysis report is published as jupyter book and available in directory `docs`.
 
@@ -105,6 +105,17 @@ To create the contents of jupyter book, execute the command mentioned below.
 ```bash
 jupyter-book build docs
 ```
+
+#### 7. Publish the report
+
+Reports can be published as github pages. Url should look like - https://<username>.github.io/abalone_age_classification/README.html
+
+```bash
+ghp-import -n -p -f docs/_build/html
+```
+
+Our report for this anlysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html)
+
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 
