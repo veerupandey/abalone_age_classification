@@ -1,5 +1,5 @@
 ## References
 
-```{bibliography} docs/references.bib
+```{bibliography} references.bib
 :all:
 ```
