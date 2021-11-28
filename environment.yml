@@ -16,3 +16,4 @@ dependencies:
       - jupyter-book==0.12.1
       - mglearn==0.1.9
       - dataframe-image==0.1.1
+      - ghp-import
