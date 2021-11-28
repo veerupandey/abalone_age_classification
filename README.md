@@ -31,7 +31,7 @@ To perform this analysis, first, after the data download, we split the data into
 
 ## Report
 
-The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html). The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
 
 ## Usage
 
