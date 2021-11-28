@@ -31,7 +31,7 @@ To perform this analysis, first, after the data download, we split the data into
 
 ## Report
 
-The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/docs/Project_report_milestone2.ipynb" >here</a>. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html). The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
 
 ## Usage
 
@@ -120,7 +120,6 @@ To publish the report, run the command mentioned below.
 ghp-import -n -p -f docs/_build/html
 ```
 
-Our report for this analysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
 
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
