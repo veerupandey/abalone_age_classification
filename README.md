@@ -119,8 +119,17 @@ A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_a
 
 This dataset is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. This allows for the sharing and adaptation of the datasets for any purpose, provided that the appropriate credit is given.
 
+
 ## References
 
-```{bibliography} docs/references.bib
-:all:
-```
+- Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+
+- Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) "The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait", Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
+
+- David Clark, Zoltan Schreter, Anthony Adams "A Quantitative Comparison of Dystal and Backpropagation", Australian Conference on Neural Networks (ACNN'96)
+
+- Under Southern Seas: The Ecology of Australia's Rocky Reefs. (1999). United States: UNSW Press.
+
+- Python Software Foundation. Python Language Reference, version 2.7. Available at http://www.python.org
+
+- RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.
