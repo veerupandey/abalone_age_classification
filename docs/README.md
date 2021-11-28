@@ -3,100 +3,139 @@
 Data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia.
 
 ## Authors
+- Nick Lisheng Mao
+- Beilin Wu (Lynn)
+- Kiran Phaterpekar
+- Rakesh Pandey
 
--   Nick Lisheng Mao
--   Beilin Wu (Lynn)
--   Kiran Phaterpekar
--   Rakesh Pandey
 
 ## Introduction
-
-Abalones are endangered marine snails that are found in the cold coastal water around the world. The price of an abalone is positively associated with its age. However, determining how old an abalone is a very complex process.
+Abalones are endangered marine snails that are found in the cold coastal water around the world. The price of an abalone is positively associated with its age. However, determining how old an abalone is a very complex process. 
 
 In this project we are classifying abalone snails into "young" and "old" according to their number of rings based on input features such as abalone's gender, height with meat in shell, weight of the shell etc.
 
-## Project Proposal
 
-Last updated: Nov 21st, 2021
 
--   **About the Data Set and Analysis**
+## About Data Set and Analysis
 
-    The Abalone data set that was used in this project was sourced from the UC
-    Irvine Machine Learning Repository published in 1995. It can be
-    found here. Each row in
-    the data set represents the attributes and physical measurements of
-    abalones including number of rings, sex, length, diameter, height, weight,
-    etc. The number of rings were
-    counted manually using a microscope by the researchers. The age of an abalone is represented by its number of
-    rings plus 1.5 as number of years lived. **In this project we will focus on
-    classifying whether an abalone is young, i.e. number of rings
-    smaller than or equal to 11, or old, i.e. number of rings is larger
-    than 11, based on the input features.**
+The Abalone data set that was used in this project was sourced from the UC Irvine Machine Learning Repository published in 1995. It can be found here. Each row in the data set represents the attributes and physical measurements of abalones including number of rings, sex, length, diameter, height, weight, etc. The number of rings were counted manually using a microscope by the researchers. The age of an abalone is represented by its number of rings plus 1.5 as number of years lived. The data set has already removed its missing values and the range of the continuous values have been scaled for use with an ANN (by dividing by 200).
 
-    The data set has already
-    removed its missing values and the range of the continuous values
-    have been scaled by dividing by 200 for use.
+In the research paper "A Quantitative Comparison of Dystal and Backpropagation" that David Clark, Zoltan Schreter and Anthony Adams submitted to the Australian Conference on Neural Networks (ACNN'96), the original abalone data set was treated as a 3-category classification problem (grouping ring classes 1-8, 9 and 10, and 11 on). In our project, we will treat the data set as a 2-categorical classification problem (grouping ring classes less or equal to 11, and more than 11).
 
--   **Predictive Research Question**
+Here, we aim to answer one research question with a Logistic Regression classification model:
 
-    Given the input features (sex, longest shell measurement,
-    diameter perpendicular to length, height with meat in shell, whole
-    weight, weight of meat, gut weight after bleeding, shell weight
-    after being dried), is an abalone young (i.e. number of rings smaller
-    than or equal to 11), or old (i.e. number of rings is larger than 11)?
+**Given the input features (sex, longest shell measurement, diameter perpendicular to length, height with meat in shell, whole weight, weight of meat, gut weight after bleeding, shell weight after being dried), is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?**
 
-    -   Some related sub questions includes:
+To perform this analysis, first, after the data download, we split the data into train set and test set, perform data wrangling, and perform EDA on the train set features to investigate the relationships between the independent variables used in our model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, we fit a Logistic Regression classification model on the data set, tune hyperparameters and evaluate the best performing model on the test set. The final step is creating a full report that shares the analysis results, as structured below.
 
-        -   Which features are more important/significant in predicting whether an abalone is old or young?
 
-        -   Are there relationships between these features?
+## Report
 
--   **Preliminary Analysis Plan**
-
-    Here is our prelimary analysis plan. Firstly, after the data download, we split the data into train set and test set, perform EDA on the train set features and investigate the relationships between the independent variables used in our classification model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, after examining the statistical assumptions, we fit a random forest classification model on the data set, tune hyperparameters and evaluate the best performing model on the test set. The final step is creating a full report that shares the analysis results, as structured below.
-
--   **Report**
-
-    The final report can be found here. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/docs/Project_report_milestone2.ipynb" >here</a>. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
 
 ## Usage
 
-To download the data, run the script below.
+### Create project evironment
+
+Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
+
+```bash
+conda env create -f environment.yml
+conda activate abalone
+```
+
+### Run analysis end to end
+
+To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
+
+```bash
+nohup bash runner.sh > runner.log &
+```
+
+### (Optional) Run individual script
+
+To run modules individually, please follow the instructions below. All the scripts should be run from project root directory.
+
+#### 1. Download the data
+
+To download the data, run the command as follows..
 
 ```bash
 python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
 ```
 
-In case script is called without arguments, arguments will be fetched from config file.
+#### 2. Data prerocessing
+
+Run the data preprocessing script as follows.
 
 ```bash
-python src/data/data_download.py
+python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
 ```
+
+#### 3. Exploratory data analysis (EDA)
+
+Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
+
+```bash
+python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
+```
+
+#### 4. Train the model
+
+To train the model, run the script `src/models/train.py` as follows.
+
+```bash
+python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
+```
+
+#### 5. Test and evaluate model performance
+
+To generate the model test and evaluation report, run the script `src/models/test.py`.
+
+```bash
+python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
+```
+
+#### 6. Publish the reports
+
+Our final analysis report is published as jupyter book and available in directory `docs`.
+
+To create the contents of jupyter book, execute the command mentioned below.
+
+```bash
+jupyter-book build docs
+```
+
+**_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 
 ## Dependencies
 
-A environment file `environment.yaml` of dependencies can be found here. As project develops, this `yaml` file is subjected to change.
+A environment file `environment.yml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yml">here</a>. As project develops, this `yaml` file is subjected to change.
 
-## Discussion of EDA Table and Figure
-
-A detailed EDA report can be found here.
-
-Here are some preliminary EDA table and figures that we found interesting during our data exploration:
-
--   The table below displays the descriptive data analysis to our training data. There is no missing value in our training data.
--   ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/summary_table_update.png)
--   The first EDA is on target distribution in train set. We can observe an unblanced data in target variable.
--   ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/target_viz_update.png)
--   The second EDA is on corrleation heat map. We can observe that most feature variables are highly correlated.
--   ![](https://github.com/lynnwbl/abalone_age_classification/blob/main/src/eda/corr_viz_update.png)
--   The third EDA is a trend line of length and rings. We can observe that length of young abalones is positively correlated with the rings. But such correlation is barely found in old abalones.
--   ![](https://github.com/kphaterp/abalone_age_classification/blob/main/src/eda/length_reg_viz.png)
+## Explanatory Data Analysis
+A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
 
 ## License
 
 This dataset is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. This allows for the sharing and adaptation of the datasets for any purpose, provided that the appropriate credit is given.
 
+
+## Bibliography
+
+```{bibliography} references.bib
+:all:
+```
+
 ## References
 
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.\
-Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) "The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait", Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
+- Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+
+- Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) "The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait", Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)
+
+- David Clark, Zoltan Schreter, Anthony Adams "A Quantitative Comparison of Dystal and Backpropagation", Australian Conference on Neural Networks (ACNN'96)
+
+- Under Southern Seas: The Ecology of Australia's Rocky Reefs. (1999). United States: UNSW Press.
+
+- Python Software Foundation. Python Language Reference, version 2.7. Available at http://www.python.org
+
+- RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.

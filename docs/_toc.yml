@@ -1,7 +1,9 @@
 format: jb-book
 root: README
 parts:
-  - chapters:
-    - file: intro.md
-    - file: content.md
-
+  - caption: Proposal
+    chapters:
+      - file: proposal.md
+  - caption: Report
+    chapters: 
+    - file: Project_report_milestone2.ipynb
