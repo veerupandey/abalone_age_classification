@@ -120,7 +120,7 @@ To publish the report, run the command mentioned below.
 ghp-import -n -p -f docs/_build/html
 ```
 
-Our report for this anlysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
+Our report for this analysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
 
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.

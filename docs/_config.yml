@@ -5,7 +5,7 @@
 
 #######################################################################################
 # Book settings
-title                       : Abalone Age Classification  # The title of the book. Will be placed in the left navbar.
+title                       : Abalone Age Classifier  # The title of the book. Will be placed in the left navbar.
 author                      : DSCI_522_GROUP28  # The author of the book
 copyright                   : "2021"  # Copyright year to be placed in the footer
 logo                        : logo.png  # A path to the book logo
