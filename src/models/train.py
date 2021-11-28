@@ -134,6 +134,7 @@ def fit_model(train_df, pipe):
     # split train data for cross validation
     X_train = train_df.drop(columns=['Is old'])
     y_train = train_df['Is old']
+    y_train=y_train.map({'young': 1, 'old': 0}).astype(int)
     
     # set parameter grid
     param_grid = {"logisticregression__C": 10.0 ** np.arange(-3, 4)}
