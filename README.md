@@ -110,7 +110,8 @@ jupyter-book build docs
 
 Reports can be published as github pages. 
 
-Url should start with the username. Example:- 
+URL should start with the username. Example:-
+ 
 `https://<username>.github.io/abalone_age_classification/README.html`
 
 To publish the report, run the command mentioned below.
@@ -129,6 +130,7 @@ Our report for this anlysis is available [here](https://UBC-MDS.github.io/abalon
 A environment file `environment.yml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yml">here</a>. As project develops, this `yaml` file is subjected to change.
 
 ## Explanatory Data Analysis
+
 A detailed EDA report can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/src/eda/eda.ipynb" >here</a>.
 
 ## License

@@ -110,7 +110,8 @@ jupyter-book build docs
 
 Reports can be published as github pages. 
 
-Url should start with the username. Example:- 
+URL should start with the username. Example:-
+ 
 `https://<username>.github.io/abalone_age_classification/README.html`
 
 To publish the report, run the command mentioned below.
