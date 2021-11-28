@@ -271,8 +271,13 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#publish-the-reports">
-       6. Publish the reports
+      <a class="reference internal nav-link" href="#build-the-report">
+       6. Build the report
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#publish-the-report">
+       7. Publish the report
       </a>
      </li>
     </ul>
@@ -376,7 +381,7 @@ conda activate abalone
 <div class="section" id="exploratory-data-analysis-eda">
 <h4>3. Exploratory data analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Permalink to this headline">¶</a></h4>
 <p>Script <code class="docutils literal notranslate"><span class="pre">src/eda/eda.py</span></code> generates EDA reports and save it to the specified location.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/eda/eda.py --data_path<span class="o">=</span><span class="s2">&quot;data/processed/train.csv&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;reports/eda&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/eda/eda.py --data_path<span class="o">=</span><span class="s2">&quot;data/processed/train.csv&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;results/eda&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -394,13 +399,24 @@ conda activate abalone
 </pre></div>
 </div>
 </div>
-<div class="section" id="publish-the-reports">
-<h4>6. Publish the reports<a class="headerlink" href="#publish-the-reports" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="build-the-report">
+<h4>6. Build the report<a class="headerlink" href="#build-the-report" title="Permalink to this headline">¶</a></h4>
 <p>Our final analysis report is published as jupyter book and available in directory <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
 <p>To create the contents of jupyter book, execute the command mentioned below.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book build docs
 </pre></div>
 </div>
+</div>
+<div class="section" id="publish-the-report">
+<h4>7. Publish the report<a class="headerlink" href="#publish-the-report" title="Permalink to this headline">¶</a></h4>
+<p>Reports can be published as github pages.</p>
+<p>URL should start with the username. Example:-</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/abalone_age_classification/README.html</span></code></p>
+<p>To publish the report, run the command mentioned below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ghp-import -n -p -f docs/_build/html
+</pre></div>
+</div>
+<p>Our report for this anlysis is available <a class="reference external" href="https://UBC-MDS.github.io/abalone_age_classification/README.html">here</a>.</p>
 <p><strong><em>Note:</em></strong> If a script runs without command line arguments, arguments will be fetched from <code class="docutils literal notranslate"><span class="pre">configs/config.yaml</span></code> file.</p>
 </div>
 </div>

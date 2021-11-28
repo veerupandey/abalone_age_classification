@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Proposal &#8212; Abalone Age Classification</title>
+    <title>References &#8212; Abalone Age Classification</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Abalone Age Classification Project Report" href="Project_report_milestone2.html" />
-    <link rel="prev" title="Abalone Age Classifier" href="README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -101,9 +99,9 @@
   Proposal
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="proposal.html">
    Project Proposal
   </a>
  </li>
@@ -160,7 +158,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/proposal.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/references.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -180,7 +178,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/veerupandey/abalone_age_classification/issues/new?title=Issue%20on%20page%20%2Fproposal.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/veerupandey/abalone_age_classification/issues/new?title=Issue%20on%20page%20%2Freferences.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -209,33 +207,9 @@
         
               <div>
                 
-  <div class="section" id="project-proposal">
-<h1>Project Proposal<a class="headerlink" href="#project-proposal" title="Permalink to this headline">¶</a></h1>
-<p>Last updated: Nov 21st, 2021</p>
-<ul>
-<li><p><strong>About the Data Set and Analysis</strong></p>
-<p>The Abalone data set that was used in this project was sourced from the UC Irvine Machine Learning Repository published in 1995. It can be found <a class="reference external" href="https://archive-beta.ics.uci.edu/ml/datasets/abalone">here</a>. Each row in the data set represents the attributes and physical measurements of abalones including number of rings, sex, length, diameter, height, weight, etc. The number of rings were counted manually using a microscope by the researchers. The age of an abalone is represented by its number of rings plus 1.5 as number of years lived. <strong>In this project we will focus on classifying whether an abalone is young, i.e. number of rings smaller than or equal to 11, or old, i.e. number of rings is larger than 11, based on the input features.</strong></p>
-<p>The data set has already removed its missing values and the range of the continuous values have been scaled by dividing by 200 for use.</p>
-</li>
-<li><p><strong>Predictive Research Question</strong></p>
-<p>Given the input features (sex, longest shell measurement, diameter perpendicular to length, height with meat in shell, whole weight, weight of meat, gut weight after bleeding, shell weight after being dried), is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?</p>
-<ul class="simple">
-<li><p>Some related sub questions includes:</p>
-<ul>
-<li><p>Which features are more important/significant in predicting whether an abalone is old or young?</p></li>
-<li><p>Are there relationships between these features?</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Preliminary Analysis Plan</strong></p>
-<p>Here is our prelimary analysis plan. Firstly, after the data download, we split the data into train set and test set, perform data wrangling, and perform EDA on the train set features to investigate the relationships between the independent variables used in our model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, we fit a Logistic Regression classification model on the data set, tune hyperparameters and evaluate the best performing model on the test set. The final step is creating a full report that shares the analysis results, as structured below.</p>
-</li>
-<li><p><strong>Report</strong></p>
-<p>The final report can be found <a class="reference external" href="https://UBC-MDS.github.io/abalone_age_classification/README.html">here</a>. The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.</p>
-</li>
-</ul>
-</div>
+  <div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="id1"></span></div>
 
     <script type="text/x-thebe-config">
     {
@@ -261,21 +235,7 @@
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Abalone Age Classifier</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="Project_report_milestone2.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Abalone Age Classification Project Report</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
         
         </div>
