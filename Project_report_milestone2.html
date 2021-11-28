@@ -238,8 +238,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#interpretations">
-   Interpretations
+  <a class="reference internal nav-link" href="#interpretations-and-model-results">
+   Interpretations and model results
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -419,12 +419,68 @@ The data set has already removed its missing values and the range of the continu
 </div>
 <p>Figure 4. Correlations between numerical features and the number of rings in an abalone in the training data</p>
 </div>
-<div class="section" id="interpretations">
-<h2>Interpretations<a class="headerlink" href="#interpretations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interpretations-and-model-results">
+<h2>Interpretations and model results<a class="headerlink" href="#interpretations-and-model-results" title="Permalink to this headline">¶</a></h2>
 <p>An important note about the training data is that there exists a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> target classes. With more examples of the target class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, this could have an affect on the accuracy of the model. Because of this fact, we may considered additional scoring metrics in addition to accuracy, such as recall, precision, and f1 score to account for this class imbalance.</p>
 <p>Observing the distributions of the numerical features gives some insight into some of the distinctions between the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and <code class="docutils literal notranslate"><span class="pre">young</span></code> class of abalone. For example, when abalone are <code class="docutils literal notranslate"><span class="pre">old</span></code>, there are only a few examples where the abalone <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38, whereas the <code class="docutils literal notranslate"><span class="pre">young</span></code> class has many examples of abalone where their <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38. Another example that is observable is that for the <code class="docutils literal notranslate"><span class="pre">diameter</span></code> feature, there are few examples of <code class="docutils literal notranslate"><span class="pre">old</span></code> abalone that contain a <code class="docutils literal notranslate"><span class="pre">diameter</span></code> less than 0.30, while <code class="docutils literal notranslate"><span class="pre">young</span></code> abalone have a number of examples where their <code class="docutils literal notranslate"><span class="pre">diameter</span></code> is less than 0.30.</p>
 <p>There is a relatively even distribution between the <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within each of the target classes, <code class="docutils literal notranslate"><span class="pre">young</span></code> and <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected behaviour of the distribution between <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code>, as there likely isn’t any bias toward one sex within this organism. However, the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category of the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature has a greater number of examples that are <code class="docutils literal notranslate"><span class="pre">young</span></code> compared to <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected, since <code class="docutils literal notranslate"><span class="pre">Infants</span></code> are expected to be younger abalone. The indistinct distribution of <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within the <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes likely doesn’t provide any predictive value to our model. Additionally, since the objective of the model is to predict whether an abalone is <code class="docutils literal notranslate"><span class="pre">young</span></code> or <code class="docutils literal notranslate"><span class="pre">old</span></code>, it may not make sense to include the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature in the model as the presence of the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category within the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature would make this classification model redundant.</p>
 <p>The correlation map provides useful information in determining what feature might be valuable for predicting whether an abalone is <code class="docutils literal notranslate"><span class="pre">old</span></code> or <code class="docutils literal notranslate"><span class="pre">young</span></code>. Since many of the numerical features seem to be at least moderately correlated with the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code> (which directly determines age of abalone), many of these numerical features are likely useful to include in our model.</p>
+<p>We fit a logistic regression on the train data as we are dealing with a binary classification problem. The model set the target class <code class="docutils literal notranslate"><span class="pre">old</span></code> as 0 and <code class="docutils literal notranslate"><span class="pre">young</span></code> as 1. We first build a preprocessor which transfers the <code class="docutils literal notranslate"><span class="pre">sex</span></code> category by using One-Hot-Encoding and applies standard scaler on other numeric features. Then, we use random search cross validation to find the best hyperparameter for the logistic regression. The tuning results is shown in the figure 5 and table 1. The best model fit is when <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">100</span></code> and the model is exported as a <code class="docutils literal notranslate"><span class="pre">.sav</span></code> file. After fitting the model, we use test set to check the model performance. In table 2, the metrics on the test data set is shown. As we have <code class="docutils literal notranslate"><span class="pre">young</span></code> class as 1 and more <code class="docutils literal notranslate"><span class="pre">young</span></code> in data set, we can expect a relatively high recall score. To have a further look into the model’s coefficient, we output the coefficient in table 3 and plot a bar chart to show the importance of features. The <code class="docutils literal notranslate"><span class="pre">shucked_weight</span></code> and if the abalone is infant is most positively correlated with abalone being <code class="docutils literal notranslate"><span class="pre">young</span></code> and if the <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">weight</span></code> is most negatively correlated. As we lack domain knowledge in abalone, we can interpret why two weights point to opposite direction in the model. But it is understandable that being an infant abalone is correlated with being <code class="docutils literal notranslate"><span class="pre">young</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/cv_result.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_17_0.png" src="_images/Project_report_milestone2_17_0.png" />
+</div>
+</div>
+<p>Figure 5. Validation score with different hyperparameter C</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/train_result_table.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_19_0.png" src="_images/Project_report_milestone2_19_0.png" />
+</div>
+</div>
+<p>Table 1. A closer look to each parameter and validation score</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/test_result_table.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_21_0.png" src="_images/Project_report_milestone2_21_0.png" />
+</div>
+</div>
+<p>Table 2. Test results on different metrics</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_sorted.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_23_0.png" src="_images/Project_report_milestone2_23_0.png" />
+</div>
+</div>
+<p>Table 3. Feature importance in our logistic model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_bar.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Project_report_milestone2_25_0.png" src="_images/Project_report_milestone2_25_0.png" />
+</div>
+</div>
+<p>Figure 6. Feature importance as a bar chart</p>
 </div>
 <div class="section" id="limitations-and-assumptions">
 <h2>Limitations and assumptions<a class="headerlink" href="#limitations-and-assumptions" title="Permalink to this headline">¶</a></h2>
@@ -439,15 +495,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a class="reference external" href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science.</p></li>
-<li><p>Warwick J Nash, Tracy L Sellers, Simon R Talbot, Andrew J Cawthorn and Wes B Ford (1994) “The Population Biology of Abalone (Haliotis species) in Tasmania. I. Blacklip Abalone (H. rubra) from the North Coast and Islands of Bass Strait”, Sea Fisheries Division, Technical Report No. 48 (ISSN 1034-3288)</p></li>
-<li><p>David Clark, Zoltan Schreter, Anthony Adams “A Quantitative Comparison of Dystal and Backpropagation”, Australian Conference on Neural Networks (ACNN’96)</p></li>
-<li><p>Under Southern Seas: The Ecology of Australia’s Rocky Reefs. (1999). United States: UNSW Press.</p></li>
-<li><p>Python Software Foundation. Python Language Reference, version 2.7. Available at <a class="reference external" href="http://www.python.org">http://www.python.org</a></p></li>
-<li><p>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL <a class="reference external" href="http://www.rstudio.com/">http://www.rstudio.com/</a>.</p></li>
-</ul>
-</div>
+<span class="target" id="id1"></span></div>
 </div>
 
     <script type="text/x-thebe-config">
