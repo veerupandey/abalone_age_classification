@@ -31,4 +31,7 @@ python src/models/test.py --data_file="data/processed/test.csv" --out_dir="resul
 # Run jupyter book
 jupyter-book build docs
 
+# Publish jupyter book
+ghp-import -n -p -f docs/_build/html
+
 echo "Exiting! Script successfully completed."
