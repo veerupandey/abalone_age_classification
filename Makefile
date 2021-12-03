@@ -1,3 +1,15 @@
+# This is a makefile to automate the project abalone_age_classification.
+# Author: DSCI_522_group_28
+
+## ----------------------------------------------------------------------
+## Usage: make [target]
+## Passing 'all' as the target will reproduce the analysis end to end.
+## Passing 'clean' will clean all the analysis output files.
+## Conda environment can be created with target 'create_env'.
+## However, it must be activated in the terminal before running make.
+## Passing 'format' as the target will format the code in src directory.
+## ----------------------------------------------------------------------
+
 .PHONY: create_env format clean data targets
 
 #################################################################################
