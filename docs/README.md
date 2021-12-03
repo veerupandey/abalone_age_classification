@@ -63,7 +63,7 @@ make clean # to clean the analysis output files
 make all # to reproduce the analysis end to end
 ```
 
-Individual steps can also be executed using `make` command. For example - following command runs `data_download.py` script and save the output file to disk.
+Individual steps can also be executed using `make` command. For example - following command runs `data_download.py` script and save the output file to disk. To see all the targets/steps, please refer the `Makefile`.
 
 ```bash
 make data/raw/abalone.data
