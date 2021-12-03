@@ -55,7 +55,7 @@ conda activate abalone
 
 #### Option 1: Using GNU make
 
-To run the analysis end to end, run the following command in a Terminal/Command Prompt from the project root directory.
+To run the analysis end to end, run the following commands in a Terminal/Command Prompt from the project root directory.
 
 ```bash
 make clean # to clean the analysis output files
@@ -69,7 +69,7 @@ Individual steps can also be executed using `make` command. For example - follow
 make data/raw/abalone.data
 ```
 
-Please clean the target directories for the step before invoking `make` command.
+Please clean the target directories before invoking `make` command. `make clean` can be used to clean all the intermediate files and results.
 
 #### Option 2: Using runner.sh
 
@@ -79,7 +79,7 @@ To run the analysis end to end, run the script `runner.sh` in a Terminal/Command
 nohup bash runner.sh > runner.log &
 ```
 
-Log file `runner.log` logs all the steps and can be used for debugging.
+Log file `runner.log` logs all the steps and can be used for debugging the script.
 
 ### (Optional) Run individual script
 
