@@ -10,7 +10,7 @@
 ## Passing 'format' as the target will format the code in src directory.
 ## ----------------------------------------------------------------------
 
-.PHONY: create_env format clean data targets
+.PHONY: create_env format clean data 
 
 #################################################################################
 # COMMANDS                                                                      #

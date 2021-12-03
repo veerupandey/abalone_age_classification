@@ -44,13 +44,42 @@ conda env create -f environment.yml
 conda activate abalone
 ```
 
+Alterantively, following commands can be used.
+
+```bash
+make create_env
+conda activate abalone
+```
+
 ### Run analysis end to end
+
+#### Option 1: Using GNU make
+
+To run the analysis end to end, run the following command in a Terminal/Command Prompt from the project root directory.
+
+```bash
+make clean # to clean the analysis output files
+
+make all # to reproduce the analysis end to end
+```
+
+Individual steps can also be executed using `make` command. For example - following command runs `data_download.py` script and save the output file to disk.
+
+```bash
+make data/raw/abalone.data
+```
+
+Please clean the target directories for the step before invoking `make` command.
+
+#### Option 2: Using runner.sh
 
 To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
 
 ```bash
 nohup bash runner.sh > runner.log &
 ```
+
+Log file `runner.log` logs all the steps and can be used for debugging.
 
 ### (Optional) Run individual script
 
