@@ -17,7 +17,7 @@
 #################################################################################
 
 all: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
-	results/eda results/model docs/_build docs/_build/html 
+	results/eda results/model docs/_build publish
 
 ## Set up python interpreter environment
 create_env:
@@ -47,7 +47,7 @@ results/model: data/processed/train.csv data/processed/test.csv
 docs/_build:  
 	jupyter-book build docs
 
-docs/_build/html: docs/_build
+publish: docs/_build
 	ghp-import -n -p -f docs/_build/html
 
 
