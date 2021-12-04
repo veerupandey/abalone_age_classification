@@ -10,7 +10,7 @@ Last updated: Nov 21st, 2021
 
 -   **Predictive Research Question**
 
-    Given the input features (sex, longest shell measurement, diameter perpendicular to length, height with meat in shell, whole weight, weight of meat, gut weight after bleeding, shell weight after being dried), is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?
+    Given the physical measurements of an abalone, is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?
 
     -   Some related sub questions includes:
 
@@ -20,8 +20,8 @@ Last updated: Nov 21st, 2021
 
 -   **Preliminary Analysis Plan**
 
-    Here is our prelimary analysis plan. Firstly, after the data download, we split the data into train set and test set, perform data wrangling, and perform EDA on the train set features to investigate the relationships between the independent variables used in our model. We then preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. Next, we fit a Logistic Regression classification model on the data set, tune hyperparameters and evaluate the best performing model on the test set. The final step is creating a full report that shares the analysis results, as structured below.
+    Here is our prelimary analysis plan. Firstly, after the data download, we split the data into train set and test set and perform data wrangling that includes creating the "Is Old" target variable that identifies an abalone's age. We then perform EDA on the training data to investigate the relationships across the independent variables, as well as differences between young and old abalones. Next, since we are dealing with a binary classification problem, we decide to fit a Logistic Regression model on the data set. In this project, we choose Logistic Regression model since it is easier to implement, interpret, and very efficient to train when compared to other models. Due to limited time span of this project, we will not be testing the data with other models. Before we fit the model, we preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. When fitting a Logistic Regression model to classify the abalone ages, we use random search cross validation to find the best performing hyperparameter and evaluate the best performing model on the test set on various scores. We also examine the feature importance by looking at their coefficients in the logistic model. The final step of this project is creating a Jupyter Book report that shares the analysis results.
 
 -   **Report**
 
-    The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html). The final analysis report consists of the following components: summary, introduction, methods including data and analysis, results/discussion, future analysis directions/takeaway and references.
+    The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).

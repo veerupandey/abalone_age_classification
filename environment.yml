@@ -13,6 +13,8 @@ dependencies:
   - vega-cli 
   - vega-lite-cli
   - pip:
+      - black
+      - black[jupyter]
       - altair-saver==0.5.0
       - docopt==0.6.2
       - jupyter-book==0.12.1
