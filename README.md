@@ -31,7 +31,7 @@ To perform this analysis, first, after the data download, we split the data into
 
 ## Report
 
-The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
+The final report can be found [here](https://github.com/UBC-MDS/abalone_age_classification/blob/main/docs/Project_report_milestone2.ipynb).
 
 ## Usage
 
