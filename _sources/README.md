@@ -51,6 +51,12 @@ make create_env
 conda activate abalone
 ```
 
+**Note:** If you are on Windows, you might have to run following commands to make the `altair` and `altair_saver` work as expected.
+
+```bash
+npm install -g vega vega-cli vega-lite canvas
+```
+
 ### Run analysis end to end
 
 #### Option 1: Using GNU make
