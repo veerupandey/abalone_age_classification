@@ -44,7 +44,7 @@ results/model: data/processed/train.csv data/processed/test.csv
 	python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 
 ## Jupyter book
-docs/_build:  
+docs/_build: results/eda results/model 
 	jupyter-book build docs
 
 publish: docs/_build
