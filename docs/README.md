@@ -160,6 +160,14 @@ Our report for this analysis is available [here](https://UBC-MDS.github.io/abalo
 
 **_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 
+## Flow Chart 
+
+![Flowchart](../images/flowchart.png)
+
+## Project Structure
+
+![Project Structure](../images/project_org.png)
+
 ## Dependencies
 
 A environment file `environment.yml` of dependencies can be found <a href="https://github.com/UBC-MDS/abalone_age_classification/blob/main/environment.yml">here</a>. As project develops, this `yaml` file is subjected to change.

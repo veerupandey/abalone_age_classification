@@ -24,22 +24,22 @@ create_env:
 	conda env create -f environment.yml
 
 ## Download Data
-data/raw/abalone.data: 
+data/raw/abalone.data: src/data/data_download.py
 	python  src/data/data_download.py  \
 	--url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" \
 	--outputfile="data/raw/abalone.data"
 
 ## Data preprocessing
-data/processed/train.csv data/processed/test.csv: data/raw/abalone.data 	
+data/processed/train.csv data/processed/test.csv: data/raw/abalone.data src/data/data_preprocessing.py	
 	python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
 
 ## EDA
-results/eda: data/processed/train.csv
+results/eda: data/processed/train.csv src/eda/eda.py
 	python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="results/eda"
 
 
 ##  Model output
-results/model: data/processed/train.csv data/processed/test.csv
+results/model: data/processed/train.csv data/processed/test.csv src/models/train.py src/models/test.py
 	python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
 	python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
 
@@ -50,6 +50,9 @@ docs/_build: results/eda results/model
 publish: docs/_build
 	ghp-import -n -p -f docs/_build/html
 
+# Create flow chart
+flowchart:
+	make -Bnd | make2graph | dot -Tpng -o results/images/flowchart.png
 
 ## Format using black formatter
 format:
