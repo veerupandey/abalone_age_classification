@@ -41,26 +41,19 @@ To run this analysis using Docker, clone/download this repository, use the comma
 
 ```bash
 # Clean output directories and results
-docker run --privileged  --rm -it -v /$(pwd):/home/abalone abalone_age_classification make -C /home/abalone clean
+docker run --privileged  --rm -it -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
 
 # Run the Analysis
-docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone abalone_age_classification make -C /home/abalone all
+docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 ```
 
 Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
 
-### Option 2: Using `make` file or `runner.sh`
+### Option 2: Using `make`
 
 #### Create project environment
 
 Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
-
-```bash
-conda env create -f environment.yml
-conda activate abalone
-```
-
-Alterantively, following commands can be used.
 
 ```bash
 make create_env
@@ -75,8 +68,6 @@ npm install -g vega vega-cli vega-lite canvas
 
 #### Run analysis end to end
 
-##### Option 1: Using GNU make
-
 To run the analysis end to end, run the following commands in a Terminal/Command Prompt from the project root directory.
 
 ```bash
@@ -85,7 +76,7 @@ make clean # to clean the analysis output files
 make all # to reproduce the analysis end to end
 ```
 
-`make all` publishes the report on on localhost. Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
+`make all` publishes the report on localhost. Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
 
 In case report has to be published to git pages, following command should be used in defiance of `make all`.
 
@@ -103,7 +94,14 @@ make data/raw/abalone.data
 
 Please clean the target directories before invoking `make` command. `make clean` can be used to clean all the intermediate files and results.
 
-##### Option 2: Using runner.sh
+### Option 3: Using `runner.sh` 
+
+Python environment must be created and activated before running `runner.sh`. To create the environment, use the following command.
+
+```bash
+conda env create -f environment.yml
+conda activate abalone
+```
 
 To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
 
@@ -112,78 +110,6 @@ nohup bash runner.sh > runner.log &
 ```
 
 Log file `runner.log` logs all the steps and can be used for debugging the script.
-
-### (Optional) Run individual script
-
-To run modules individually, please follow the instructions below. All the scripts should be run from project root directory.
-
-#### 1. Download the data
-
-To download the data, run the command as follows..
-
-```bash
-python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
-```
-
-#### 2. Data prerocessing
-
-Run the data preprocessing script as follows.
-
-```bash
-python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
-```
-
-#### 3. Exploratory data analysis (EDA)
-
-Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
-
-```bash
-python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="reports/eda"
-```
-
-#### 4. Train the model
-
-To train the model, run the script `src/models/train.py` as follows.
-
-```bash
-python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
-```
-
-#### 5. Test and evaluate model performance
-
-To generate the model test and evaluation report, run the script `src/models/test.py`.
-
-```bash
-python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
-```
-
-#### 6. Build the report
-
-Our final analysis report is published as jupyter book and available in directory `docs`.
-
-To create the contents of jupyter book, execute the command mentioned below.
-
-```bash
-jupyter-book build docs
-```
-
-#### 7. Publish the report
-
-Reports can be published as github pages. 
-
-URL should start with the username. Example:-
- 
-`https://<username>.github.io/abalone_age_classification/README.html`
-
-To publish the report, run the command mentioned below.
-
-```bash
-ghp-import -n -p -f docs/_build/html
-```
-
-
-
-**_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
 
 ## Flow Chart 
 
