@@ -13,7 +13,7 @@
 .PHONY: create_env format clean data 
 
 #################################################################################
-# COMMANDS                                                                      #
+# COMMANDS TO RUN ANALYSIS                                                                     #
 #################################################################################
 
 all: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
@@ -50,6 +50,10 @@ docs/_build: results/eda results/model
 publish: docs/_build
 	ghp-import -n -p -f docs/_build/html
 
+#################################################################################
+# DEVOPS COMMANDS                                                               #
+#################################################################################
+
 # Create flow chart
 flowchart:
 	make -Bnd | make2graph | dot -Tpng -o results/images/flowchart.png
@@ -57,6 +61,15 @@ flowchart:
 ## Format using black formatter
 format:
 	black src
+
+# Docker build
+docker_build: Dockerfile
+	docker build -t  abalone_age_classification .
+
+# Docker run
+docker_run: 
+	docker run --rm -it -v /$(pwd):/app/abalone abalone_age_classification make -C /app/abalone clean
+	docker run --rm -it -v /$(pwd):/app/abalone abalone_age_classification make -C /app/abalone all
 
 ## Clean environment
 clean:
