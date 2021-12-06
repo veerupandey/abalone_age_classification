@@ -35,7 +35,23 @@ The final report can be found [here](https://ubc-mds.github.io/abalone_age_class
 
 ## Usage
 
-### Create project evironment
+### Option 1: Using `docker`
+
+To run this analysis using Docker, clone/download this repository, use the command line to navigate to the root of this project on your computer, and then type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).
+
+```bash
+# Clean output directories and results
+docker run --privileged  --rm -it -v /$(pwd):/home/abalone abalone_age_classification make -C /home/abalone clean
+
+# Run the Analysis
+docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone abalone_age_classification make -C /home/abalone all
+```
+
+Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
+
+### Option 2: Using `make` file or `runner.sh`
+
+#### Create project environment
 
 Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
 
@@ -57,9 +73,9 @@ conda activate abalone
 npm install -g vega vega-cli vega-lite canvas
 ```
 
-### Run analysis end to end
+#### Run analysis end to end
 
-#### Option 1: Using GNU make
+##### Option 1: Using GNU make
 
 To run the analysis end to end, run the following commands in a Terminal/Command Prompt from the project root directory.
 
@@ -67,6 +83,16 @@ To run the analysis end to end, run the following commands in a Terminal/Command
 make clean # to clean the analysis output files
 
 make all # to reproduce the analysis end to end
+```
+
+`make all` publishes the report on on localhost. Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
+
+In case report has to be published to git pages, following command should be used in defiance of `make all`.
+
+```bash
+make clean # to clean the analysis output files
+
+make all_git_publish # to reproduce the analysis end to end and publish to git pages
 ```
 
 Individual steps can also be executed using `make` command. For example - following command runs `data_download.py` script and save the output file to disk. To see all the targets/steps, please refer the `Makefile`.
@@ -77,7 +103,7 @@ make data/raw/abalone.data
 
 Please clean the target directories before invoking `make` command. `make clean` can be used to clean all the intermediate files and results.
 
-#### Option 2: Using runner.sh
+##### Option 2: Using runner.sh
 
 To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
 
