@@ -16,13 +16,12 @@
 # COMMANDS TO RUN ANALYSIS                                                                     #
 #################################################################################
 
-# Run all steps
-all: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
-	results/eda results/model docs/_build publish
-
 # Publish report webpage locally
-all_publish_local: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
+all: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
 	results/eda results/model docs/_build publish_local
+
+all_git_publish: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
+	results/eda results/model docs/_build publish
 
 ## Set up python interpreter environment
 create_env:
