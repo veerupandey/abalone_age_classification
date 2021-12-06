@@ -63,7 +63,7 @@ publish_local: docs/_build
 
 # Create flow chart
 flowchart:
-	make -Bnd | make2graph | dot -Tpng -o results/images/flowchart.png
+	make -Bnd | make2graph | dot -Tpng -o images/flowchart.png
 
 ## Format using black formatter
 format:
