@@ -16,8 +16,13 @@
 # COMMANDS TO RUN ANALYSIS                                                                     #
 #################################################################################
 
+# Run all steps
 all: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
 	results/eda results/model docs/_build publish
+
+# Publish report webpage locally
+all_publish_local: data/raw/abalone.data data/processed/train.csv data/processed/test.csv \
+	results/eda results/model docs/_build publish_local
 
 ## Set up python interpreter environment
 create_env:
@@ -50,6 +55,9 @@ docs/_build: results/eda results/model
 publish: docs/_build
 	ghp-import -n -p -f docs/_build/html
 
+publish_local: docs/_build
+	cd docs/_build/html && python -m http.server
+
 #################################################################################
 # DEVOPS COMMANDS                                                               #
 #################################################################################
@@ -65,11 +73,6 @@ format:
 # Docker build
 docker_build: Dockerfile
 	docker build -t  abalone_age_classification .
-
-# Docker run
-docker_run: 
-	docker run --rm -it -v /$(pwd):/app/abalone abalone_age_classification make -C /app/abalone clean
-	docker run --rm -it -v /$(pwd):/app/abalone abalone_age_classification make -C /app/abalone all
 
 ## Clean environment
 clean:
