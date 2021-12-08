@@ -71,7 +71,7 @@ format:
 
 # Docker build
 docker_build: Dockerfile
-	docker build -t  abalone_age_classification .
+	docker build --no-cache -t  veerupandey/abalone_age_classification .
 
 ## Clean environment
 clean:
