@@ -35,16 +35,25 @@ The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_cl
 
 ## Usage
 
-### Create project evironment
+### Option 1: Using `docker`
 
-Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
+To run this analysis using Docker, clone/download this repository, use the command line to navigate to the root of this project on your computer, and then type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).
 
 ```bash
-conda env create -f environment.yml
-conda activate abalone
+# Clean output directories and results
+docker run --privileged  --rm -it -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
+
+# Run the Analysis
+docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 ```
 
-Alterantively, following commands can be used.
+Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
+
+### Option 2: Using `make`
+
+#### Create project environment
+
+Project `python` environment needs to be created before running the analysis. Run the command mentioned below from project root directory.
 
 ```bash
 make create_env
@@ -57,9 +66,7 @@ conda activate abalone
 npm install -g vega vega-cli vega-lite canvas
 ```
 
-### Run analysis end to end
-
-#### Option 1: Using GNU make
+#### Run analysis end to end
 
 To run the analysis end to end, run the following commands in a Terminal/Command Prompt from the project root directory.
 
@@ -67,6 +74,16 @@ To run the analysis end to end, run the following commands in a Terminal/Command
 make clean # to clean the analysis output files
 
 make all # to reproduce the analysis end to end
+```
+
+`make all` publishes the report on localhost. Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
+
+In case report has to be published to git pages, following command should be used in defiance of `make all`.
+
+```bash
+make clean # to clean the analysis output files
+
+make all_git_publish # to reproduce the analysis end to end and publish to git pages
 ```
 
 Individual steps can also be executed using `make` command. For example - following command runs `data_download.py` script and save the output file to disk. To see all the targets/steps, please refer the `Makefile`.
@@ -77,7 +94,14 @@ make data/raw/abalone.data
 
 Please clean the target directories before invoking `make` command. `make clean` can be used to clean all the intermediate files and results.
 
-#### Option 2: Using runner.sh
+### Option 3: Using `runner.sh` 
+
+Python environment must be created and activated before running `runner.sh`. To create the environment, use the following command.
+
+```bash
+conda env create -f environment.yml
+conda activate abalone
+```
 
 To run the analysis end to end, run the script `runner.sh` in a Terminal/Command Prompt from the project root directory as follows. Script `runner.sh` runs each individual script one at a time.
 
@@ -87,78 +111,13 @@ nohup bash runner.sh > runner.log &
 
 Log file `runner.log` logs all the steps and can be used for debugging the script.
 
-### (Optional) Run individual script
+## Flow Chart 
 
-To run modules individually, please follow the instructions below. All the scripts should be run from project root directory.
+![Flowchart](images/flowchart.png)
 
-#### 1. Download the data
+## Project Structure
 
-To download the data, run the command as follows..
-
-```bash
-python src/data/data_download.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data" --outputfile="data/raw/abalone.data"
-```
-
-#### 2. Data prerocessing
-
-Run the data preprocessing script as follows.
-
-```bash
-python src/data/data_preprocessing.py --inputfile="data/raw/abalone.data" --out_dir="data/processed"
-```
-
-#### 3. Exploratory data analysis (EDA)
-
-Script `src/eda/eda.py` generates EDA reports and save it to the specified location.
-
-```bash
-python src/eda/eda.py --data_path="data/processed/train.csv" --out_dir="results/eda"
-```
-
-#### 4. Train the model
-
-To train the model, run the script `src/models/train.py` as follows.
-
-```bash
-python src/models/train.py --data_file="data/processed/train.csv" --out_dir="results/model"
-```
-
-#### 5. Test and evaluate model performance
-
-To generate the model test and evaluation report, run the script `src/models/test.py`.
-
-```bash
-python src/models/test.py --data_file="data/processed/test.csv" --out_dir="results/model"
-```
-
-#### 6. Build the report
-
-Our final analysis report is published as jupyter book and available in directory `docs`.
-
-To create the contents of jupyter book, execute the command mentioned below.
-
-```bash
-jupyter-book build docs
-```
-
-#### 7. Publish the report
-
-Reports can be published as github pages. 
-
-URL should start with the username. Example:-
-
-`https://<username>.github.io/abalone_age_classification/README.html`
-
-To publish the report, run the command mentioned below.
-
-```bash
-ghp-import -n -p -f docs/_build/html
-```
-
-Our report for this analysis is available [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
-
-
-**_Note:_** If a script runs without command line arguments, arguments will be fetched from `configs/config.yaml` file.
+![Project Structure](images/project_org.png)
 
 ## Dependencies
 
