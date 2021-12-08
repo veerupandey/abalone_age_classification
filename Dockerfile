@@ -12,13 +12,13 @@ WORKDIR /home/abalone
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Update package list
-RUN apt-get update -y
-
-# Install development tools, gnu make, chrome driver
+# Install access control, development tools, 
+# gnu make, chrome driver
 # Clean the downloaded package
-RUN apt-get install gcc python3-dev chromium-driver make -y &&\
-    apt-get clean -y &&\
-    apt-get autoremove
+RUN apt-get update && \
+    apt-get install -y \
+    acl gcc python3-dev chromium-driver make \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy envronment.yml to container
 COPY environment.yml .
@@ -32,13 +32,12 @@ RUN rm -rf ./environment.yml
 # Make RUN commands use the new environment:
 RUN echo "conda activate abalone" >> ~/.bashrc
 SHELL ["/bin/bash", "--login", "-c"]
-RUN rm /opt/conda/envs/abalone/bin/python
-RUN ln -s /opt/conda/envs/abalone/bin/python3 /opt/conda/envs/abalone/bin/python 
+RUN rm /opt/conda/envs/abalone/bin/python && \
+    ln -s /opt/conda/envs/abalone/bin/python3 /opt/conda/envs/abalone/bin/python 
 ENV PATH="/opt/conda/envs/abalone/bin:$PATH"
 
 # Permission to abalone user
-RUN apt-get install acl -y &&\
-    setfacl -R -m u:abalone:rwx /home/abalone
+RUN setfacl -R -m u:abalone:rwx /home/abalone
 
 # Add user
 USER abalone
