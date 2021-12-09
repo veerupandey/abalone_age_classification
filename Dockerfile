@@ -4,8 +4,6 @@
 # Use miniconda image 
 FROM continuumio/miniconda3@sha256:92d7896124d940cb1815d3b59d8eaab9a8e86c801af2437658581465044b0a06
 
-
-
 # Work directory
 RUN useradd -ms /bin/bash abalone
 WORKDIR /home/abalone
