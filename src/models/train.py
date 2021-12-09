@@ -32,10 +32,7 @@ from ipywidgets import interact, interactive
 from sklearn.model_selection import cross_val_score, cross_validate, train_test_split
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import (
-    ColumnTransformer,
-    make_column_transformer
-)
+from sklearn.compose import ColumnTransformer, make_column_transformer
 from sklearn.model_selection import (
     GridSearchCV,
     RandomizedSearchCV,
@@ -51,8 +48,9 @@ from utils.util import get_config, get_logger
 # Define logger
 logger = get_logger()
 
+
 def main(data_file, out_dir):
-    """run all helper functions to find the best model and get the 
+    """run all helper functions to find the best model and get the
     hyperparameter tuning result
     Parameters
     ----------
@@ -63,7 +61,7 @@ def main(data_file, out_dir):
     """
     # If a directory path doesn't exist, create one
     os.makedirs(out_dir, exist_ok=True)
-    
+
     train_df = pd.read_csv(data_file)
     pipe = build_pipe()
     best_model, train_results = fit_model(train_df, pipe)
@@ -73,10 +71,10 @@ def main(data_file, out_dir):
 
     # save the hyperparameter tuning plot
     train_plot(train_results, out_dir + "/cv_result.png")
-    
+
     # save train results as a table
     train_df_table(train_results, out_dir)
-    
+
 
 def build_pipe():
 
@@ -92,32 +90,38 @@ def build_pipe():
     logger.info("Building the pipeline...")
 
     # build column transformer
-    categorical_feature = ['Sex']
-    numerical_features = ['Length', 'Diameter', 'Height', 'Whole weight', 
-                          'Shucked weight', 'Viscera weight', 'Shell weight']
-    target = 'Is old'
-    drop_feature = ['Rings']
+    categorical_feature = ["Sex"]
+    numerical_features = [
+        "Length",
+        "Diameter",
+        "Height",
+        "Whole weight",
+        "Shucked weight",
+        "Viscera weight",
+        "Shell weight",
+    ]
+    target = "Is old"
+    drop_feature = ["Rings"]
 
     preprocessor = make_column_transformer(
         (StandardScaler(), numerical_features),
-        (OneHotEncoder(handle_unknown="ignore", sparse=False), 
-         categorical_feature),
+        (OneHotEncoder(handle_unknown="ignore", sparse=False), categorical_feature),
         ("drop", drop_feature),
     )
 
     # build pipe line
     lr = LogisticRegression(max_iter=2000)
     pipe = make_pipeline(preprocessor, lr)
-    
+
     logger.info("Successfully built the pipeline...")
-    
+
     return pipe
 
 
 def fit_model(train_df, pipe):
     """Train the logistic model by using random search
     with cross validation
-    
+
     Parameters
     ----------
     data_file : string
@@ -128,38 +132,40 @@ def fit_model(train_df, pipe):
     train_results: dataframe
         A data frame with train score results from each model
     """
-    
+
     logger.info("Fitting the model...")
-    
+
     # split train data for cross validation
-    X_train = train_df.drop(columns=['Is old'])
-    y_train = train_df['Is old']
-    y_train=y_train.map({'young': 1, 'old': 0}).astype(int)
-    
+    X_train = train_df.drop(columns=["Is old"])
+    y_train = train_df["Is old"]
+    y_train = y_train.map({"young": 1, "old": 0}).astype(int)
+
     # set parameter grid
     param_grid = {"logisticregression__C": 10.0 ** np.arange(-3, 4)}
-    
+
     # fit model
-    random_search = GridSearchCV(pipe,
-                                 param_grid = param_grid,
-                                 n_jobs = -1,
-                                 cv = 5)
+    random_search = GridSearchCV(pipe, param_grid=param_grid, n_jobs=-1, cv=5)
     random_search.fit(pd.DataFrame(X_train), y_train)
-    
+
     # create output dataframe
-    train_results = pd.DataFrame(random_search.cv_results_)[
-    [   "mean_test_score",
-        "param_logisticregression__C",
-        "mean_fit_time",
-        "rank_test_score",
+    train_results = (
+        pd.DataFrame(random_search.cv_results_)[
+            [
+                "mean_test_score",
+                "param_logisticregression__C",
+                "mean_fit_time",
+                "rank_test_score",
+            ]
         ]
-    ].set_index("rank_test_score").sort_index()
-    
+        .set_index("rank_test_score")
+        .sort_index()
+    )
+
     # find the best model
     best_model = random_search.best_estimator_
-    
+
     logger.info("Model fitted...")
-    
+
     return best_model, train_results
 
 
@@ -173,7 +179,7 @@ def train_plot(train_results, out_dir):
         the path to store the plot
     """
     logger.info("Making train results plot...")
-    train_results.plot(x = "param_logisticregression__C", y = "mean_test_score")
+    train_results.plot(x="param_logisticregression__C", y="mean_test_score")
     plt.xscale("log")
     plt.savefig(out_dir)
     logger.info(f"Train results plot saved to {out_dir}")
@@ -207,4 +213,3 @@ if __name__ == "__main__":
     logger.info("Running training...")
     main(data_file, out_dir)
     logger.info("Training script successfully completed. Exiting!")
-

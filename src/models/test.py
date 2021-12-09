@@ -32,6 +32,7 @@ from utils.util import get_config, get_logger
 # Define logger
 logger = get_logger()
 
+
 def main(data_file, out_dir):
     """load the best model and fit on test data
     Parameters
@@ -41,13 +42,13 @@ def main(data_file, out_dir):
     out_dir : string
         Path to directory where the test result should be saved
     """
-    
+
     test_df = pd.read_csv(data_file)
     best_model = pickle.load(open(out_dir + "/best_model.sav", "rb"))
 
     # show the score of best model on test data in a table
     result = test_model(best_model, test_df)
-    
+
     # show the coefficients of best model
     coeff_plot(best_model, out_dir)
 
@@ -66,26 +67,29 @@ def test_model(best_model, test_df):
         score
     """
     logger.info("Testing on test set...")
-    scoring_metrics = ["accuracy",
-                       "f1",
-                       "recall",
-                       "precision",
-                       "roc_auc",
-                       "average_precision"]
-    X_test = test_df.drop(columns=['Is old'])
-    y_test = test_df['Is old']
-    y_test=y_test.map({'young': 1, 'old': 0}).astype(int)
-    
-    rdf = pd.DataFrame(scoring_metrics, columns = ["Metrics"])
+    scoring_metrics = [
+        "accuracy",
+        "f1",
+        "recall",
+        "precision",
+        "roc_auc",
+        "average_precision",
+    ]
+    X_test = test_df.drop(columns=["Is old"])
+    y_test = test_df["Is old"]
+    y_test = y_test.map({"young": 1, "old": 0}).astype(int)
+
+    rdf = pd.DataFrame(scoring_metrics, columns=["Metrics"])
 
     r = []
     for m in scoring_metrics:
         r.append(get_scorer(m)(best_model, X_test, y_test))
     rdf["Test Result"] = r
-    rdf.set_index('Metrics')
+    rdf.set_index("Metrics")
     path = os.path.join(out_dir, "test_result_table.png")
     dfi.export(rdf, path)
     logger.info("Test set results saved as a table")
+
 
 def coeff_plot(best_model, out_dir):
     """output tables and plots
