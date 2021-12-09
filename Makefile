@@ -51,10 +51,13 @@ results/model: data/processed/train.csv data/processed/test.csv src/models/train
 docs/_build: results/eda results/model 
 	jupyter-book build docs
 
+## jupyter book to github pages
 publish: docs/_build
 	ghp-import -n -p -f docs/_build/html
 
+# Publish jupyter book to local
 publish_local: docs/_build
+	@echo "Starting Python HTTP Server" 
 	cd docs/_build/html && python -m http.server
 
 #################################################################################
