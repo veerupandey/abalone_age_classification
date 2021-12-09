@@ -20,6 +20,8 @@ In this project we are classifying abalone snails into "young" and "old" accordi
 
 The Abalone data set that was used in this project was sourced from the UC Irvine Machine Learning Repository published in 1995. It can be found <a href="https://archive.ics.uci.edu/ml/datasets/abalone" >here</a>. Each row in the data set represents the attributes and physical measurements of abalones including number of rings, sex, length, diameter, height, weight, etc. The number of rings were counted manually using a microscope by the researchers. The age of an abalone is represented by its number of rings plus 1.5 as number of years lived. The data set has already removed its missing values and the range of the continuous values have been scaled for use with an ANN (by dividing by 200).
 
+The `Sex` column in this dataset includes three categories: `Female`, `Male` and `Infant`. Abalone of different sex has different body composition with distinct economic values. Harvesting an infant abalone may cause endangered crisis to the population. 
+
 In the research paper "A Quantitative Comparison of Dystal and Backpropagation" that David Clark, Zoltan Schreter and Anthony Adams submitted to the Australian Conference on Neural Networks (ACNN'96), the original abalone data set was treated as a 3-category classification problem (grouping ring classes 1-8, 9 and 10, and 11 on). In our project, we will treat the data set as a 2-categorical classification problem (grouping ring classes less or equal to 11, and more than 11).
 
 Here, we aim to answer one research question with a Logistic Regression classification model:
