@@ -19,8 +19,8 @@ Before making a substantial pull request, you must create an issue to ensure tha
 ___
 
 - It is advised that pull requests are created in GitHub branches
-- Any new code should apply the ![tidyverse style guide](https://style.tidyverse.org/) or ![PEP8 python style](https://www.python.org/dev/peps/pep-0008/) 
-- Use ![roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html), with Markdown syntax, for documentation or proper docstrings for python functions
+- Any new code should apply the [tidyverse style guide](https://style.tidyverse.org/) or [PEP8 python style](https://www.python.org/dev/peps/pep-0008/) 
+- Use [roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html), with Markdown syntax, for documentation or proper docstrings for python functions
 
 **Code of Conduct**
 ___
