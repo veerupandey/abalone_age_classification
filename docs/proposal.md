@@ -26,4 +26,4 @@ Last updated: Nov 21st, 2021
 
 -   **Report**
 
-    The final report can be found [here](https://UBC-MDS.github.io/abalone_age_classification/README.html).
+    The final report can be found [here](https://ubc-mds.github.io/abalone_age_classification/Project_report_milestone2.html).
