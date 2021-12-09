@@ -13,7 +13,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Update package list
 # Install access control, development tools, 
-# gnu make, chrome driver
+# Install gnu make, chrome driver
 # Clean the downloaded package
 RUN apt-get update && \
     apt-get install -y \
