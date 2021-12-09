@@ -40,11 +40,19 @@ The final report can be found <a href="https://github.com/UBC-MDS/abalone_age_cl
 To run this analysis using Docker, clone/download this repository, use the command line to navigate to the root of this project on your computer, and then type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).
 
 ```bash
+
 # Clean output directories and results
-docker run --privileged  --rm -it -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
+docker run --privileged  --rm -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
 
 # Run the Analysis
+# Flag `--it` is here for a purpose
 docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
+```
+
+As a simple python webserver will be started at port 8000 to serve analysis html web page, flag `-it` will help to debug and close the session. Docker can also run in detach mode with flag `-d`.
+
+```bash
+docker run --privileged  --rm -d -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 ```
 
 Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
