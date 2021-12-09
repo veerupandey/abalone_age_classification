@@ -24,9 +24,11 @@ In the research paper "A Quantitative Comparison of Dystal and Backpropagation" 
 
 Here, we aim to answer one research question with a Logistic Regression classification model:
 
-**Given the input features (sex, longest shell measurement, diameter perpendicular to length, height with meat in shell, whole weight, weight of meat, gut weight after bleeding, shell weight after being dried), is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?**
+**Given the input features including sex, size and weight, is an abalone young (i.e. number of rings smaller than or equal to 11), or old (i.e. number of rings is larger than 11)?**
 
 To perform this analysis, first, after the data download we split the data into train set and test set and perform data wrangling that includes creating the “Is Old” target variable that identifies an abalone’s age. We then perform EDA on the training data to investigate the relationships across the independent variables, as well as differences between young and old abalones. Next, since we are dealing with a binary classification problem, we decide to fit a Logistic Regression model on the data set. In this project, we choose Logistic Regression model since it is easier to implement, interpret, and very efficient to train when compared to other models. Due to limited time span of this project, we will not be testing the data with other models. Before we fit the model, we preprocess the data including scaling the numerical features and one-hot-encoding the categorical feature. When fitting a Logistic Regression model to classify the abalone ages, we use random search cross validation to find the best performing hyperparameter and evaluate the best performing model on the test set on various scores. We also examine the feature importance by looking at their coefficients in the logistic model. The final step of this project is creating a Jupyter Book report that shares the analysis results.
+
+As a result, with hyperparameter tuning on the Logistic Regression model, we found that the best model fit is when C = 100. The final model achieved a F1 score of 90% and a recall of 95% on the test set. Through investigating the feature importances from their coefficients, we discovered that the shucked_weight and if the abalone is infant is most positively correlated with abalone being young and if the whole weight is most negatively correlated.
 
 
 ## Report
