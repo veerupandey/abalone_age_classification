@@ -13,11 +13,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Update package list
 # Install access control, development tools, 
-# Install gnu make, chrome driver
+# Install gnu make
 # Clean the downloaded package
 RUN apt-get update && \
     apt-get install -y \
-    acl gcc python3-dev chromium-driver make \
+    acl gcc python3-dev make \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy envronment.yml to container

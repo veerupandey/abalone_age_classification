@@ -25,7 +25,6 @@ import matplotlib.pyplot as plt
 import mglearn
 import numpy as np
 import pandas as pd
-import dataframe_image as dfi
 import pickle
 from IPython.display import HTML, display
 from ipywidgets import interact, interactive
@@ -188,8 +187,9 @@ def train_plot(train_results, out_dir):
 def train_df_table(train_results, out_dir):
 
     logger.info("Making train results table...")
-    path = os.path.join(out_dir, "train_result_table.png")
-    dfi.export(train_results, path)
+    train_results.to_html(
+        os.path.join(out_dir, "train_result_table.html"), escape=False
+    )
     logger.info(f"Train results table saved to {out_dir}")
 
 

@@ -42,17 +42,17 @@ To run this analysis using Docker, clone/download this repository, use the comma
 ```bash
 
 # Clean output directories and results
-docker run --privileged  --rm -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
+docker run --rm -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
 
 # Run the Analysis
 # Flag `--it` is here for a purpose
-docker run --privileged  --rm -it -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
+docker run --rm -it -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 ```
 
 As a simple python webserver will be started at port 8000 to serve analysis html web page, flag `-it` will help to debug and close the session. Docker can also run in detach mode with flag `-d`.
 
 ```bash
-docker run --privileged  --rm -d -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
+docker run --rm -d -p 8000:8000 -v /$(pwd):/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 ```
 
 Report can be accessed in local machine by accessing [http://localhost:8000](http://localhost:8000) in any of the modern web browser.
@@ -121,11 +121,11 @@ Log file `runner.log` logs all the steps and can be used for debugging the scrip
 
 ## Flow Chart 
 
-![Flowchart](images/flowchart.png)
+![Flowchart](../images/flowchart.png)
 
 ## Project Structure
 
-![Project Structure](images/project_org.png)
+![Project Structure](../images/project_org.png)
 
 ## Dependencies
 

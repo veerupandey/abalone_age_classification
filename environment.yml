@@ -5,19 +5,19 @@ channels:
 dependencies:
   - pip
   - jupyterlab
-  - altair=4.1.0=py_1
-  - pyyaml==6.0
-  - scikit-learn==1.0.1
-  - ipywidgets==7.6.5
-  - matplotlib==3.5.0
+  - altair=4.1.*
+  - pyyaml==6.*
+  - scikit-learn==1.0.*
+  - ipywidgets==7.6.*
+  - matplotlib==3.5.*
   - vega-cli 
   - vega-lite-cli
   - pip:
       - black
       - black[jupyter]
-      - altair-saver==0.5.0
-      - docopt==0.6.2
-      - jupyter-book==0.12.1
+      - altair-saver==0.5.*
+      - docopt==0.6.*
+      - jupyter-book==0.12.*
       - mglearn
-      - dataframe-image==0.1.1
-      - ghp-import==2.0.2
+      - dataframe-image==0.1.*
+      - ghp-import==2.0.*
