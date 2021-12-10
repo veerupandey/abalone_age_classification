@@ -22,7 +22,6 @@ import matplotlib.pyplot as plt
 import mglearn
 import numpy as np
 import pandas as pd
-import dataframe_image as dfi
 import pickle
 from sklearn.metrics import get_scorer
 
@@ -86,8 +85,7 @@ def test_model(best_model, test_df):
         r.append(get_scorer(m)(best_model, X_test, y_test))
     rdf["Test Result"] = r
     rdf.set_index("Metrics")
-    path = os.path.join(out_dir, "test_result_table.png")
-    dfi.export(rdf, path)
+    rdf.to_html(os.path.join(out_dir, "test_result_table.html"), escape=False)
     logger.info("Test set results saved as a table")
 
 
@@ -105,9 +103,9 @@ def coeff_plot(best_model, out_dir):
     coeffs = best_model.named_steps["logisticregression"].coef_.flatten()
     coeff_df = pd.DataFrame(coeffs, index=feature_names, columns=["Coefficient"])
     coeff_df_sorted = coeff_df.sort_values(by="Coefficient", ascending=False)
-    dfi.export(coeff_df_sorted, out_dir + "/coeff_sorted.png")
+    coeff_df_sorted.to_html(os.path.join(out_dir, "coeff_sorted.html"), escape=False)
     mglearn.tools.visualize_coefficients(coeffs, feature_names, n_top_features=5)
-    plt.savefig(out_dir + "/coeff_bar.png")
+    plt.savefig(os.path.join(out_dir, "coeff_bar.png"))
     logger.info("Bar plot for coefficents saved")
 
 
