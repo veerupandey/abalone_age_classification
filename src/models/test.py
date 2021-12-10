@@ -23,7 +23,6 @@ import mglearn
 import numpy as np
 import pandas as pd
 import pickle
-import imgkit
 from sklearn.metrics import get_scorer
 
 # Customer imports
