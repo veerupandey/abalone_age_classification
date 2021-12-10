@@ -12,8 +12,7 @@ WORKDIR /home/abalone
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Update package list
-# Install access control, development tools, 
-# Install gnu make
+# Install access control, development tools, Install gnu make
 # Clean the downloaded package
 RUN apt-get update && \
     apt-get install -y \
