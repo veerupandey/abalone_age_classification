@@ -12,11 +12,12 @@ WORKDIR /home/abalone
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Update package list
-# Install access control, development tools, Install gnu make
+# Install access control, development tools
+# Install gnu make, chrome driver
 # Clean the downloaded package
 RUN apt-get update && \
     apt-get install -y \
-    acl gcc python3-dev make \
+    acl gcc python3-dev make chromium-driver \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy envronment.yml to container
