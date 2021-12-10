@@ -298,13 +298,19 @@ The data set has already removed its missing values and the range of the continu
 <p>The young-old class is determined by the number of rings present on the abalone. Moreover, a threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code> was set such that abalones that contained greater than 11 rings would be placed in the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and otherwise the abalone would be placed in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. Using this threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code>, all of the examples of abalone in the training and test data were split into either the <code class="docutils literal notranslate"><span class="pre">old</span></code> class or the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. To determine any indications of class imbalance based on this threshold, we explored the distribution of target classes (<code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code>) in the training data (Figure 1). Indeed, the distribution indicates a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes within the training data. More specifically, there are 2,576 examples of the class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, whereas there are only 766 examples of the class, <code class="docutils literal notranslate"><span class="pre">old</span></code>, within the training data. Apparently the data is imbalanced. We do not think it is necessary to deal with class imbalance in this case because we are not actively looking into a young or old abalone. However, this is an important component of the training data that needs to be kept in mind as the analysis is followed through.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/target_distribution.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/target_distribution.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_5_0.png" src="_images/Project_report_milestone2_5_0.png" />
+<img alt="_images/Project_report_milestone2_6_0.png" src="_images/Project_report_milestone2_6_0.png" />
 </div>
 </div>
 <p>Figure 1. Distribution of target classes, young and old, for abalone in the training data</p>
@@ -316,7 +322,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_8_0.png" src="_images/Project_report_milestone2_8_0.png" />
+<img alt="_images/Project_report_milestone2_9_0.png" src="_images/Project_report_milestone2_9_0.png" />
 </div>
 </div>
 <p>Figure 2. Distributions of numerical features for both the young and old class of abalone</p>
@@ -328,7 +334,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_11_0.png" src="_images/Project_report_milestone2_11_0.png" />
+<img alt="_images/Project_report_milestone2_12_0.png" src="_images/Project_report_milestone2_12_0.png" />
 </div>
 </div>
 <p>Figure 3. The distribution of sexes for both classes, young and old, of abalone in the training data</p>
@@ -340,7 +346,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_14_0.png" src="_images/Project_report_milestone2_14_0.png" />
+<img alt="_images/Project_report_milestone2_15_0.png" src="_images/Project_report_milestone2_15_0.png" />
 </div>
 </div>
 <p>Figure 4. Correlations between numerical features and the number of rings in an abalone in the training data</p>
@@ -359,41 +365,186 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_17_0.png" src="_images/Project_report_milestone2_17_0.png" />
+<img alt="_images/Project_report_milestone2_18_0.png" src="_images/Project_report_milestone2_18_0.png" />
 </div>
 </div>
 <p>Figure 5. Validation score with different hyperparameter C</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/train_result_table.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;../results/model/train_result_table.html&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_19_0.png" src="_images/Project_report_milestone2_19_0.png" />
-</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_test_score</th>
+      <th>param_logisticregression__C</th>
+      <th>mean_fit_time</th>
+    </tr>
+    <tr>
+      <th>rank_test_score</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.826403</td>
+      <td>100.0</td>
+      <td>0.030071</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.826403</td>
+      <td>1000.0</td>
+      <td>0.026508</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.826104</td>
+      <td>10.0</td>
+      <td>0.037531</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.822811</td>
+      <td>1.0</td>
+      <td>0.031396</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.820115</td>
+      <td>0.1</td>
+      <td>0.028026</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.798865</td>
+      <td>0.01</td>
+      <td>0.019385</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.775518</td>
+      <td>0.001</td>
+      <td>0.016184</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <p>Table 1. A closer look to each parameter and validation score</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/test_result_table.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;../results/model/test_result_table.html&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_21_0.png" src="_images/Project_report_milestone2_21_0.png" />
-</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metrics</th>
+      <th>Test Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>accuracy</td>
+      <td>0.842105</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>f1</td>
+      <td>0.902511</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>recall</td>
+      <td>0.953198</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>precision</td>
+      <td>0.856942</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>roc_auc</td>
+      <td>0.856794</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>average_precision</td>
+      <td>0.945716</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <p>Table 2. Test results on different metrics</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_sorted.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_sorted.html&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_23_0.png" src="_images/Project_report_milestone2_23_0.png" />
-</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>standardscaler__Shucked weight</th>
+      <td>4.142553</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__Sex_I</th>
+      <td>0.983024</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Viscera weight</th>
+      <td>0.818804</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Length</th>
+      <td>0.537147</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__Sex_F</th>
+      <td>0.129540</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__Sex_M</th>
+      <td>0.121077</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Height</th>
+      <td>-0.248307</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Diameter</th>
+      <td>-0.538840</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Shell weight</th>
+      <td>-1.070738</td>
+    </tr>
+    <tr>
+      <th>standardscaler__Whole weight</th>
+      <td>-4.306860</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <p>Table 3. Feature importance in our logistic model</p>
 <div class="cell docutils container">
@@ -403,7 +554,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_25_0.png" src="_images/Project_report_milestone2_25_0.png" />
+<img alt="_images/Project_report_milestone2_26_0.png" src="_images/Project_report_milestone2_26_0.png" />
 </div>
 </div>
 <p>Figure 6. Feature importance as a bar chart</p>

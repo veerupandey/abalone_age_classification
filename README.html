@@ -231,68 +231,46 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-project-evironment">
-     Create project evironment
+    <a class="reference internal nav-link" href="#option-1-using-docker">
+     Option 1: Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       docker
+      </span>
+     </code>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#run-analysis-end-to-end">
-     Run analysis end to end
+    <a class="reference internal nav-link" href="#option-2-using-make">
+     Option 2: Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       make
+      </span>
+     </code>
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#option-1-using-gnu-make">
-       Option 1: Using GNU make
+      <a class="reference internal nav-link" href="#create-project-environment">
+       Create project environment
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#option-2-using-runner-sh">
-       Option 2: Using runner.sh
+      <a class="reference internal nav-link" href="#run-analysis-end-to-end">
+       Run analysis end to end
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optional-run-individual-script">
-     (Optional) Run individual script
+    <a class="reference internal nav-link" href="#option-3-using-runner-sh">
+     Option 3: Using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       runner.sh
+      </span>
+     </code>
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#download-the-data">
-       1. Download the data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#data-prerocessing">
-       2. Data prerocessing
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exploratory-data-analysis-eda">
-       3. Exploratory data analysis (EDA)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#train-the-model">
-       4. Train the model
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#test-and-evaluate-model-performance">
-       5. Test and evaluate model performance
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#build-the-report">
-       6. Build the report
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#publish-the-report">
-       7. Publish the report
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -368,14 +346,28 @@
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="create-project-evironment">
-<h3>Create project evironment<a class="headerlink" href="#create-project-evironment" title="Permalink to this headline">¶</a></h3>
-<p>Project <code class="docutils literal notranslate"><span class="pre">python</span></code> environment needs to be created before running the analysis. Run the command mentioned below from project root directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
-conda activate abalone
+<div class="section" id="option-1-using-docker">
+<h3>Option 1: Using <code class="docutils literal notranslate"><span class="pre">docker</span></code><a class="headerlink" href="#option-1-using-docker" title="Permalink to this headline">¶</a></h3>
+<p>To run this analysis using Docker, clone/download this repository, use the command line to navigate to the root of this project on your computer, and then type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean output directories and results</span>
+docker run --rm -v /<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/abalone veerupandey/abalone_age_classification make -C /home/abalone clean
+
+<span class="c1"># Run the Analysis</span>
+<span class="c1"># Flag `--it` is here for a purpose</span>
+docker run --rm -it -p <span class="m">8000</span>:8000 -v /<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
 </pre></div>
 </div>
-<p>Alterantively, following commands can be used.</p>
+<p>As a simple python webserver will be started at port 8000 to serve analysis html web page, flag <code class="docutils literal notranslate"><span class="pre">-it</span></code> will help to debug and close the session. Docker can also run in detach mode with flag <code class="docutils literal notranslate"><span class="pre">-d</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --rm -d -p <span class="m">8000</span>:8000 -v /<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/abalone veerupandey/abalone_age_classification make -C /home/abalone all
+</pre></div>
+</div>
+<p>Report can be accessed in local machine by accessing <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in any of the modern web browser.</p>
+</div>
+<div class="section" id="option-2-using-make">
+<h3>Option 2: Using <code class="docutils literal notranslate"><span class="pre">make</span></code><a class="headerlink" href="#option-2-using-make" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-project-environment">
+<h4>Create project environment<a class="headerlink" href="#create-project-environment" title="Permalink to this headline">¶</a></h4>
+<p>Project <code class="docutils literal notranslate"><span class="pre">python</span></code> environment needs to be created before running the analysis. Run the command mentioned below from project root directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make create_env
 conda activate abalone
 </pre></div>
@@ -386,13 +378,18 @@ conda activate abalone
 </div>
 </div>
 <div class="section" id="run-analysis-end-to-end">
-<h3>Run analysis end to end<a class="headerlink" href="#run-analysis-end-to-end" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="option-1-using-gnu-make">
-<h4>Option 1: Using GNU make<a class="headerlink" href="#option-1-using-gnu-make" title="Permalink to this headline">¶</a></h4>
+<h4>Run analysis end to end<a class="headerlink" href="#run-analysis-end-to-end" title="Permalink to this headline">¶</a></h4>
 <p>To run the analysis end to end, run the following commands in a Terminal/Command Prompt from the project root directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make clean <span class="c1"># to clean the analysis output files</span>
 
 make all <span class="c1"># to reproduce the analysis end to end</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> publishes the report on localhost. Report can be accessed in local machine by accessing <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in any of the modern web browser.</p>
+<p>In case report has to be published to git pages, following command should be used in defiance of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make clean <span class="c1"># to clean the analysis output files</span>
+
+make all_git_publish <span class="c1"># to reproduce the analysis end to end and publish to git pages</span>
 </pre></div>
 </div>
 <p>Individual steps can also be executed using <code class="docutils literal notranslate"><span class="pre">make</span></code> command. For example - following command runs <code class="docutils literal notranslate"><span class="pre">data_download.py</span></code> script and save the output file to disk. To see all the targets/steps, please refer the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
@@ -401,73 +398,19 @@ make all <span class="c1"># to reproduce the analysis end to end</span>
 </div>
 <p>Please clean the target directories before invoking <code class="docutils literal notranslate"><span class="pre">make</span></code> command. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> can be used to clean all the intermediate files and results.</p>
 </div>
-<div class="section" id="option-2-using-runner-sh">
-<h4>Option 2: Using <a class="reference external" href="http://runner.sh">runner.sh</a><a class="headerlink" href="#option-2-using-runner-sh" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="option-3-using-runner-sh">
+<h3>Option 3: Using <code class="docutils literal notranslate"><span class="pre">runner.sh</span></code><a class="headerlink" href="#option-3-using-runner-sh" title="Permalink to this headline">¶</a></h3>
+<p>Python environment must be created and activated before running <code class="docutils literal notranslate"><span class="pre">runner.sh</span></code>. To create the environment, use the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate abalone
+</pre></div>
+</div>
 <p>To run the analysis end to end, run the script <code class="docutils literal notranslate"><span class="pre">runner.sh</span></code> in a Terminal/Command Prompt from the project root directory as follows. Script <code class="docutils literal notranslate"><span class="pre">runner.sh</span></code> runs each individual script one at a time.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nohup bash runner.sh &gt; runner.log <span class="p">&amp;</span>
 </pre></div>
 </div>
 <p>Log file <code class="docutils literal notranslate"><span class="pre">runner.log</span></code> logs all the steps and can be used for debugging the script.</p>
-</div>
-</div>
-<div class="section" id="optional-run-individual-script">
-<h3>(Optional) Run individual script<a class="headerlink" href="#optional-run-individual-script" title="Permalink to this headline">¶</a></h3>
-<p>To run modules individually, please follow the instructions below. All the scripts should be run from project root directory.</p>
-<div class="section" id="download-the-data">
-<h4>1. Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">¶</a></h4>
-<p>To download the data, run the command as follows..</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/data/data_download.py --url<span class="o">=</span><span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data&quot;</span> --outputfile<span class="o">=</span><span class="s2">&quot;data/raw/abalone.data&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="data-prerocessing">
-<h4>2. Data prerocessing<a class="headerlink" href="#data-prerocessing" title="Permalink to this headline">¶</a></h4>
-<p>Run the data preprocessing script as follows.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/data/data_preprocessing.py --inputfile<span class="o">=</span><span class="s2">&quot;data/raw/abalone.data&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;data/processed&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="exploratory-data-analysis-eda">
-<h4>3. Exploratory data analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Permalink to this headline">¶</a></h4>
-<p>Script <code class="docutils literal notranslate"><span class="pre">src/eda/eda.py</span></code> generates EDA reports and save it to the specified location.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/eda/eda.py --data_path<span class="o">=</span><span class="s2">&quot;data/processed/train.csv&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;results/eda&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="train-the-model">
-<h4>4. Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this headline">¶</a></h4>
-<p>To train the model, run the script <code class="docutils literal notranslate"><span class="pre">src/models/train.py</span></code> as follows.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/models/train.py --data_file<span class="o">=</span><span class="s2">&quot;data/processed/train.csv&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;results/model&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="test-and-evaluate-model-performance">
-<h4>5. Test and evaluate model performance<a class="headerlink" href="#test-and-evaluate-model-performance" title="Permalink to this headline">¶</a></h4>
-<p>To generate the model test and evaluation report, run the script <code class="docutils literal notranslate"><span class="pre">src/models/test.py</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python src/models/test.py --data_file<span class="o">=</span><span class="s2">&quot;data/processed/test.csv&quot;</span> --out_dir<span class="o">=</span><span class="s2">&quot;results/model&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="build-the-report">
-<h4>6. Build the report<a class="headerlink" href="#build-the-report" title="Permalink to this headline">¶</a></h4>
-<p>Our final analysis report is published as jupyter book and available in directory <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
-<p>To create the contents of jupyter book, execute the command mentioned below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book build docs
-</pre></div>
-</div>
-</div>
-<div class="section" id="publish-the-report">
-<h4>7. Publish the report<a class="headerlink" href="#publish-the-report" title="Permalink to this headline">¶</a></h4>
-<p>Reports can be published as github pages.</p>
-<p>URL should start with the username. Example:-</p>
-<p><code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/abalone_age_classification/README.html</span></code></p>
-<p>To publish the report, run the command mentioned below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ghp-import -n -p -f docs/_build/html
-</pre></div>
-</div>
-<p>Our report for this analysis is available <a class="reference external" href="https://UBC-MDS.github.io/abalone_age_classification/README.html">here</a>.</p>
-<p><strong><em>Note:</em></strong> If a script runs without command line arguments, arguments will be fetched from <code class="docutils literal notranslate"><span class="pre">configs/config.yaml</span></code> file.</p>
-</div>
 </div>
 </div>
 <div class="section" id="flow-chart">
