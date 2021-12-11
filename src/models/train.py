@@ -179,6 +179,10 @@ def train_plot(train_results, out_dir):
     """
     logger.info("Making train results plot...")
     train_results.plot(x="param_logisticregression__C", y="mean_test_score")
+    plt.plot(100, 0.826403, marker="o", markersize=10, markeredgecolor="red", markerfacecolor="red")
+    plt.xlabel("Hyperparameter of logistic regression C")
+    plt.ylabel("Mean test score")
+    plt.legend(["Mean test score", "Best estimator"])
     plt.xscale("log")
     plt.savefig(out_dir)
     logger.info(f"Train results plot saved to {out_dir}")
