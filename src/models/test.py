@@ -104,8 +104,11 @@ def coeff_plot(best_model, out_dir):
     """
     logger.info("Drawing bar plot for coefficents...")
     feature_names = np.array(best_model[:-1].get_feature_names_out())
+    name = []
+    for n in feature_names.tolist():
+        name.append(n.split('__')[1])
     coeffs = best_model.named_steps["logisticregression"].coef_.flatten()
-    coeff_df = pd.DataFrame(coeffs, index=feature_names, columns=["Coefficient"])
+    coeff_df = pd.DataFrame(coeffs, index=name, columns=["Coefficient"])
     coeff_df_sorted = coeff_df.sort_values(by="Coefficient", ascending=False)
     coeff_df_sorted.to_html(os.path.join(out_dir, "coeff_sorted.html"), escape=False)
     visualize_coefficients(coeffs, feature_names, n_top_features=5)
