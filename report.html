@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classifying Abalone into young and old &#8212; Abalone Age Classifier</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project Proposal" href="proposal.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Abalone Age Classifier</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Abalone Age Classifier
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Proposal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="proposal.html">
+   Project Proposal
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Report
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Classifying Abalone into young and old
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/veerupandey/abalone_age_classification"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/veerupandey/abalone_age_classification/issues/new?title=Issue%20on%20page%20%2Freport.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/veerupandey/abalone_age_classification/main?urlpath=tree/docs/report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methodology">
+   2. Methodology
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-and-target-variables">
+     2.1 Input and target variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploratory-data-analysis">
+     2.2 Exploratory data analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preprocessing">
+     2.2 Data preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-scaling">
+     2.3 Data Scaling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-hot-encoding">
+     2.4 One-hot encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-performance-metric">
+     2.6 Selecting performance metric
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-classification-model">
+     2.5 Building the classification model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   3. Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-score">
+     3.1 Cross validation score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-score">
+     3.2 Test score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-coefficients">
+     3.3 Interpreting coefficients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   4. Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-and-assumptions">
+   5. Limitations and assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Classifying Abalone into young and old</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methodology">
+   2. Methodology
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-and-target-variables">
+     2.1 Input and target variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploratory-data-analysis">
+     2.2 Exploratory data analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preprocessing">
+     2.2 Data preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-scaling">
+     2.3 Data Scaling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-hot-encoding">
+     2.4 One-hot encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-performance-metric">
+     2.6 Selecting performance metric
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-classification-model">
+     2.5 Building the classification model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   3. Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation-score">
+     3.1 Cross validation score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-score">
+     3.2 Test score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-coefficients">
+     3.3 Interpreting coefficients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   4. Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-and-assumptions">
+   5. Limitations and assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="classifying-abalone-into-young-and-old">
+<h1>Classifying Abalone into young and old<a class="headerlink" href="#classifying-abalone-into-young-and-old" title="Permalink to this headline">¶</a></h1>
+<p>Rakesh Pandey, Master of Data Science, University of British Columbia</p>
+<p><em><strong>Abstract</strong> Abalones have long been a valuable food source for people in all parts of the globe where the species thrives. The price of an abalone is positively associated with its age. However, assessing the age of an abalone is a tedious and time-consuming process. Cutting the shell through the cone, staining it, and counting the number of rings through a microscope is how abalone’s age is determined. Having a machine learning model that classifies abalone age can greatly speed up this manual process, benefiting abalone researchers and adding value to the area. In this project we are classifying abalone snails into “young” and “old” according to their number of rings based on input features such as abalone’s gender, height with meat in shell, weight of the shell etc. The dataset was collected form UCI Machine learning Repository. For this task, a logistic regression model has been proposed. The proposed model was trained and tested and the f1-score was obtained. The best F1 score was 0.90.</em></p>
+<div class="section" id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Abalone are found all over the world. They are a unique kind of snail, classified in the class Gastropoda of the phylum Mollusca. Abalone are in the family Haliotidae and the genus Haliotis which refers to the flattened shape of the abalone shell.</p>
+<p>Abalone are permanently attached to their shell in the center at a location called the muscle attachment. Some species leave a scar, whereas others don’t. The shell is formed when the abalone is in the larval stage, and abalone can only add to an existing shell after this stage. They can survive being taken from their shell if they are not injured, but they cannot produce a new shell or reattach to their old shell if it has been removed. Abalone rely on their shells to protect themselves, so an animal without a shell would be easily eaten by a predator in the wild. Inside the shell, the location below the spiral is referred to as the apex just as it is on the outside of the shell. It is under a small, hard shelf at the end of the shell. A portion of the abalone body rests in the apex but there is no substantial attachment here. <a class="reference external" href="http://www.marinebio.net/marinescience/06future/abintro.htm">[1]</a></p>
+<p>The abalone’s shell is comprised of microscopic calcium carbonate tiles that are piled like bricks and is extremely strong.This tiled structure is being studied by material experts all over the world in order to get insight into stronger ceramic products like body armour. Grinding and cutting abalone shell produces hazardous dust; proper precautions must be taken to prevent humans from breathing these particles.[2]</p>
+<p>Abalones have long been a valuable food source for people in all areas of the globe where the species thrives. In regions of Latin America, France, New Zealand, East Asia, and Southeast Asia, the meat of this mollusk is considered a delicacy. Abalone is known as bao yu in the Greater China region and among Overseas Chinese groups, and it is sometimes served as part of a Chinese feast.</p>
+<p>Because of the value of abalone and its use, abalone is rather expensive. The price is positively associated with age. The high price is justified by the rarity of old abalone (number of rings &gt; 11). Physical measurements have traditionally been used to estimate the age of abalone. Cutting the shell through the cone, staining it, and counting the number of rings through a microscope is how abalone’s age is assessed — a tedious and time-consuming process.</p>
+<p>In this project we are classifying abalone snails into “young” and “old”. Here, we aim to answer the following question with a Logistic Regression classification model:</p>
+<blockquote>
+<div><p>Given the input features including sex, size and weight, is an abalone young or old?</p>
+</div></blockquote>
+</div>
+<div class="section" id="methodology">
+<h2>2. Methodology<a class="headerlink" href="#methodology" title="Permalink to this headline">¶</a></h2>
+<p>The Abalone data set that was used in this project was sourced from the UC
+Irvine Machine Learning Repository published in 1995. It can be
+found <a href="https://archive-beta.ics.uci.edu/ml/datasets/abalone" >here</a>. Each row in
+the data set represents the attributes and physical measurements of
+abalones including number of rings, sex, length, diameter, height, weight,
+etc. The number of rings were
+counted manually using a microscope by the researchers. The age of an abalone is represented by its number of
+rings plus 1.5 as number of years lived.</p>
+<p>This set of data was created in 1995. Despite the dataset’s antiquity, the prediction models that may be created from it are likely still applicable in today’s world. Any significant changes in the biological properties and features of animals take thousands to millions of years to occur. All animals, including abalone, are subject to Darwin’s theory of evolution and natural selection. As a result, the biological characteristics of the abalone in this dataset are likely still applicable today, and useful predictive models can still be derived from it.</p>
+<div class="section" id="input-and-target-variables">
+<h3>2.1 Input and target variables<a class="headerlink" href="#input-and-target-variables" title="Permalink to this headline">¶</a></h3>
+<p>There are 4177 examples in the dataset. Each case represents the features of the age of the abalone.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p>#</p></th>
+<th class="text-align:left head"><p>Name</p></th>
+<th class="text-align:left head"><p>Data Type</p></th>
+<th class="text-align:left head"><p>Measurement Unit</p></th>
+<th class="text-align:left head"><p>Attribute Type</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:left"><p>Sex</p></td>
+<td class="text-align:left"><p>Categorical</p></td>
+<td class="text-align:left"><p>nan</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>M, F, and I (infant)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>2</p></td>
+<td class="text-align:left"><p>Length</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>Longest shell measurement</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:left"><p>Diameter</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>perpendicular to length</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:left"><p>Height</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>with meat in shell</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:left"><p>Whole weight</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>whole abalone</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>6</p></td>
+<td class="text-align:left"><p>Shucked weight</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>weight of meat</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>7</p></td>
+<td class="text-align:left"><p>Viscera weight</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>gut weight (after bleeding)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>8</p></td>
+<td class="text-align:left"><p>Shell weight</p></td>
+<td class="text-align:left"><p>Continuous</p></td>
+<td class="text-align:left"><p>mm</p></td>
+<td class="text-align:left"><p>Input</p></td>
+<td class="text-align:left"><p>after being dried</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>9</p></td>
+<td class="text-align:left"><p>Rings</p></td>
+<td class="text-align:left"><p>integer</p></td>
+<td class="text-align:left"><p>nan</p></td>
+<td class="text-align:left"><p>-</p></td>
+<td class="text-align:left"><p>+1.5 gives the age in years</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>10</p></td>
+<td class="text-align:left"><p>Is old</p></td>
+<td class="text-align:left"><p>Categorical</p></td>
+<td class="text-align:left"><p>nan</p></td>
+<td class="text-align:left"><p>Target</p></td>
+<td class="text-align:left"><p>Derived; Rings &gt; 11 then old else young.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table 1: Input and Target description</p>
+<p>For this project, we are separating the abalone into two classes, young and old, based on a threshold on the rings. Moreover, we are using a threshold whereby abalone that contain more than 11 rings would be placed in the old class and otherwise the abalone would be placed in the young class.</p>
+<p>The original abalone data set was analysed as a three-category classification issue in David Clark, Zoltan Schreter, and Anthony Adams’ research article “A Quantitative Comparison of Dystal and Backpropagation” presented at the Australian Conference on Neural Networks (ACNN’96) (grouping ring classes 1-8, 9 and 10, and 11 on).</p>
+</div>
+<div class="section" id="exploratory-data-analysis">
+<h3>2.2 Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h3>
+<p><strong>Imbalanced target variable</strong></p>
+<p>After examining the distributions of young and old abalone in the training, it is palpable that there is a class imbalance in abalone age (Figure 1). In fact, in the training data, count of young abalone is over three times that of old abalone. Palpably, accuracy can not be used here as metric for model evaluation because of the class imbalance problem. As we are not preferring one class over other, our metric of interest would be f1 score. The F1 score can be interpreted as a harmonic mean of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. We have also reported accuracy, precision, recall,  roc-auc, and average precision score for the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;img/imbalance_class.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/report_7_0.png" src="_images/report_7_0.png" />
+</div>
+</div>
+<p>Figure 1: Imbalance class (Young versus Old).</p>
+<p><strong>Sex versus target</strong></p>
+<p>Within the young and old classes, male and female abalone are distributed evenly, but there is a significant imbalance between young and old abalone in the infant group. (Figure 2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/sex_dist.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/report_10_0.png" src="_images/report_10_0.png" />
+</div>
+</div>
+<p>Figure 2: In the “Infant” group, there is an imbalance between young and old abalone.</p>
+<p>As expected, there is no clear preference for one sex (Male or Female) based on whether the abalone is old or young. The higher number of Infant abalone in the young class, on the other hand, is cause for concern. Our intuition tells us that more Infant abalone should be classed as young, but the major problem with this dataset could be that we’re predicting whether an abalone is young or old after knowing whether it’s an Infant, which introduces redundancy in the predictive model. It’s unclear why the researchers chose to add the Infant category in the sex feature column.</p>
+<p>It’s tough to know the significance of having an Infant category under the Sex feature without discussing with domain experts.</p>
+<p><strong>Correlation matrix</strong></p>
+<p>Further analysis suggests that features are highly correlated with each other and moderately correlated with rings, which is a proxy for the age of the abalone (Figure 3).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;img/correlation_plot.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/report_14_0.png" src="_images/report_14_0.png" />
+</div>
+</div>
+<p>Figure 3: Sorted lower triangle correlation matrix.</p>
+<p>These correlation values provide some insight into the predictive model’s decision-making process. Shell weight, for example, has a reasonably good association with Rings, suggesting that shell weight could be a relevant factor for estimating abalone age. This could suggest that older abalone require a heavier shell, whilst younger abalone may merely require a lighter shell. Our model might be able to detect these types of associations using these correlation values. Many of the explanatory variables are connected with one another, which is a trend worth noting. The diameter of an abalone, for example, is inversely proportional to its length. This is understandable, given that as an abalone’s diameter increases, one should expect the abalone’s length to increase as well. This does, however, have some implications for our model. It makes us wonder how important it is to include every single explanatory aspect in this model. Is it necessary to present both of these attributes if diameter encapsulates the information offered by length? Speaking with subject experts can assist us in determining which aspects are more important.</p>
+</div>
+<div class="section" id="data-preprocessing">
+<h3>2.2 Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h3>
+<p>The dataset obtained was pretty clean and did not have any missing value. To model the numeric data correctly with logistic regression, we used a data preprocessing technique called “Data Scaling”. The goal of data scaling is to change the values of numeric columns in the dataset to use a common scale, without distorting differences in the ranges of values or losing information.</p>
+<p>Further, we converted the categorical attribute Sex to numeric values using “one-hot encoding” technique<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">[5]</a> then the numeric value was further scaled.</p>
+</div>
+<div class="section" id="data-scaling">
+<h3>2.3 Data Scaling<a class="headerlink" href="#data-scaling" title="Permalink to this headline">¶</a></h3>
+<p>In our project, we have used a specific technique called <em>Standardization</em> to preprocess numeric features which standardize features by removing the mean and scaling to unit variance. The standard score of a sample x is calculated as:
+$<span class="math notranslate nohighlight">\(z = (x - \mu) / s\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the mean of the training examples  and s is the standard deviation of the training examples.</p>
+</div>
+<div class="section" id="one-hot-encoding">
+<h3>2.4 One-hot encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>Categorical features are variables that contain label values rather than numeric values. In our case, sex is a categorical feature. Usually, machine learning algorithms do not operate on categorical features directly and data need to be transformed as numeric values. This is largely a constraint of effective implementation of machine learning algorithms, rather than rigid limitations on the techniques themselves.</p>
+<p>One hot encoding is a process by which categorical variables are converted into numeric form that could be provided to machine learning algorithms. In our project, we have used <code class="docutils literal notranslate"><span class="pre">One-hot</span> <span class="pre">encoding</span></code> technique implemented by <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+</div>
+<div class="section" id="selecting-performance-metric">
+<h3>2.6 Selecting performance metric<a class="headerlink" href="#selecting-performance-metric" title="Permalink to this headline">¶</a></h3>
+<p>We have a class imbalance issue in the dataset, which was identified during EDA. Because of the class imbalance problem, accuracy cannot be used as a metric for model evaluation. In case of imbalanced class distribution F1-score is a better metric than accuracy to evaluate our model on. The F1 score can be thought of as a harmonic mean of precision and recall, with the best value being 1 and the worst being 0. Along with the F1 score, accuracy, precision, recall, ROC AUC, and average precision score would also be reported.</p>
+</div>
+<div class="section" id="building-the-classification-model">
+<h3>2.5 Building the classification model<a class="headerlink" href="#building-the-classification-model" title="Permalink to this headline">¶</a></h3>
+<p>As we are dealing with a binary classification problem, we fit a logistic regression on the training data. Logistic regression is a classification algorithm that predicts a binary outcome based on a series of independent variables and can help predict the likelihood of events by looking at historical data points.</p>
+<p>In this project, we chose logistic regression over other algorithms such as tree-based techniques because of its interpretability.</p>
+<p>The model set the target class old as 0 and young as 1. We first built a preprocessor which transformed the Sex category by using One-Hot-Encoding and we applied standard scaler on other numeric features. We then used a Grid Search cross validation to determine the best hyperparameter for the logistic regression.</p>
+<p>As we can see in Figure 4, as the value of C increases, the model’s performance on validation sets increase and plateau at around <span class="math notranslate nohighlight">\(C = 10\)</span>. Note that the hyperparameter, C, of logistic regression is associated with the regularization strength (complexity penalty) of the model. Based on the tuning results, the best logistic regression model occurs when <span class="math notranslate nohighlight">\(C = 10\)</span> (Figure 5).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/cv_result.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/report_23_0.png" src="_images/report_23_0.png" />
+</div>
+</div>
+<p>Figure 4. Hyperparameter tuning for C in logistic regression.</p>
+</div>
+</div>
+<div class="section" id="results">
+<h2>3. Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>The abalone dataset consists of 4177 samples with 9 attributes as in Table 1. We read the data as a pandas dataframe and divided the imported dataset into two sets randomly using train_test_split split function in pandas. The Training consists of approximately 80% (3342 samples) and the test set consists of 20% of the dataset (837 samples).</p>
+<p>During model evaluation, we  noticed that the cross validation and test scores are in concordance with each other, indicating that the model is not overfitted.</p>
+<div class="section" id="cross-validation-score">
+<h3>3.1 Cross validation score<a class="headerlink" href="#cross-validation-score" title="Permalink to this headline">¶</a></h3>
+<p>We started training the logistic regression model after ensuring that the parameter control was set correctly, and we kept an eye on the cross validation F1 score. We achieved mean cross validation F1 score of <span class="math notranslate nohighlight">\(0.894\)</span> with hyperparameter <span class="math notranslate nohighlight">\(C = 10\)</span>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p>rank_test_score</p></th>
+<th class="text-align:right head"><p>mean_test_score</p></th>
+<th class="text-align:right head"><p>param_logisticregression__C</p></th>
+<th class="text-align:right head"><p>mean_fit_time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.894</p></td>
+<td class="text-align:right"><p>100</p></td>
+<td class="text-align:right"><p>0.039</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.894</p></td>
+<td class="text-align:right"><p>1000</p></td>
+<td class="text-align:right"><p>0.029</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:right"><p>0.894</p></td>
+<td class="text-align:right"><p>10</p></td>
+<td class="text-align:right"><p>0.055</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:right"><p>0.892</p></td>
+<td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.041</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:right"><p>0.891</p></td>
+<td class="text-align:right"><p>0.1</p></td>
+<td class="text-align:right"><p>0.037</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>6</p></td>
+<td class="text-align:right"><p>0.883</p></td>
+<td class="text-align:right"><p>0.01</p></td>
+<td class="text-align:right"><p>0.026</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>7</p></td>
+<td class="text-align:right"><p>0.873</p></td>
+<td class="text-align:right"><p>0.001</p></td>
+<td class="text-align:right"><p>0.019</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table 2: Cross validation F1 score.</p>
+</div>
+<div class="section" id="test-score">
+<h3>3.2 Test score<a class="headerlink" href="#test-score" title="Permalink to this headline">¶</a></h3>
+<p>After fitting the model, we used a test set to assess how the model would perform on novel examples. The evaluation metrics on the test data set is shown (Table 2). Based on the model’s performance on the test set, the F1 score is 0.9, where the F1 score is the harmonic mean of the model’s recall score and precision score.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p></p></th>
+<th class="text-align:left head"><p>Metrics</p></th>
+<th class="text-align:right head"><p>Test Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>0</p></td>
+<td class="text-align:left"><p>accuracy</p></td>
+<td class="text-align:right"><p>0.84</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:left"><p>f1</p></td>
+<td class="text-align:right"><p>0.9</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>2</p></td>
+<td class="text-align:left"><p>recall</p></td>
+<td class="text-align:right"><p>0.95</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:left"><p>precision</p></td>
+<td class="text-align:right"><p>0.86</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:left"><p>roc_auc</p></td>
+<td class="text-align:right"><p>0.86</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:left"><p>average_precision</p></td>
+<td class="text-align:right"><p>0.95</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table 3: Test results.</p>
+</div>
+<div class="section" id="interpreting-coefficients">
+<h3>3.3 Interpreting coefficients<a class="headerlink" href="#interpreting-coefficients" title="Permalink to this headline">¶</a></h3>
+<p>To understand how the features in the dataset are influencing the model’s predictions, we calculated the coefficients to demonstrate the importance of each feature in the model (Figure 6 and Table 3).</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:right head"><p>Coefficient</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Shucked weight</p></td>
+<td class="text-align:right"><p>4.14</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Sex_I</p></td>
+<td class="text-align:right"><p>0.98</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Viscera weight</p></td>
+<td class="text-align:right"><p>0.82</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Length</p></td>
+<td class="text-align:right"><p>0.54</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Sex_F</p></td>
+<td class="text-align:right"><p>0.13</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Sex_M</p></td>
+<td class="text-align:right"><p>0.12</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Height</p></td>
+<td class="text-align:right"><p>-0.25</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Diameter</p></td>
+<td class="text-align:right"><p>-0.54</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Shell weight</p></td>
+<td class="text-align:right"><p>-1.07</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Whole weight</p></td>
+<td class="text-align:right"><p>-4.31</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table 4: Feature importance in our logistic model</p>
+<p>Based on the coefficients, shucked weight influences the model the most towards predicting that an abalone is young, whereas whole_weight influences the model the most towards predicting that an abalone is old.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_bar.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/report_40_0.png" src="_images/report_40_0.png" />
+</div>
+</div>
+<p>Figure 6: Model coefficents</p>
+<p>It is fascinating to see that the total weight of an abalone and the shucked weight of an abalone have opposite effects on the prediction.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>4. Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>A binary logistic model for classifying abalone into young and old from physical measurements using data obtained from UCI Machine Learning Repository was presented. The variables for the model were obtained from dataset which represents abalone features. The logistic regression model performed well on new abalone cases, with F1 score of 0.90. This project showed that a properly trained logistic regression model is capable of estimating if an abalone is old or young from a set of physical measurements of abalone. The coefficients of the various physical measures were also obtained, which helped us understand how the features influenced the prediction. The model’s predictions were heavily influenced by the weight features (shucked weight, whole weight, and shell weight).</p>
+</div>
+<div class="section" id="limitations-and-assumptions">
+<h2>5. Limitations and assumptions<a class="headerlink" href="#limitations-and-assumptions" title="Permalink to this headline">¶</a></h2>
+<p>We found that the input features are highly correlated and this might raise issue of multicollinearity. Since our primary objective was to classify abalone into young and old, we could not dive deep into this issue in the project.</p>
+<p>We fit a logistic regression and tuned it by using grid search. Other modern algorithms like gradient boosting and deep neural network can be used. We chose logistic regression for its good interpretability and reasonable performance.</p>
+<p>In terms of the sex feature, this project includes an infant category for abalone sex, which may be superfluous and may compromise the model’s validity. We may explore deleting the Infant category or the sex feature completely in the future, after more investigation and consulting with domain experts, because being an infant automatically signals that the abalone is young, rendering the predictive model useless.</p>
+<p>Throughout the project, the absence of domain knowledge to feature engineer the model inputs was a significant limitation</p>
+<p>A lot of study has been done in this area. We have not, however, been able to explore any modern literature related to the task.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://www.marinebio.net/marinescience/06future/abintro.htm">http://www.marinebio.net/marinescience/06future/abintro.htm</a></p></li>
+<li><p>Tryon, Jr., George W. (1880). Manual of Conchology; Structural and Systematic With Illustrations of the Species (PDF).II: Muricinæ, Purpurinæ. Philadelphia, PA: Academy of Natural Sciences.</p></li>
+<li><p>“A Quantitative Comparison of Dystal and Backpropagation” presented to the Australian Conference on Neural Networks (ACNN’96) by David Clark, Zoltan Schreter, and Anthony Adams</p></li>
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/azure/machine-learning/studio-module-reference/normalize-data#:~:text=Normalization%20is%20a%20technique%20often,of%20values%20or%20losing%20information">https://docs.microsoft.com/en-us/previous-versions/azure/machine-learning/studio-module-reference/normalize-data#:~:text=Normalization is a technique often,of values or losing information</a>.</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html</a></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="proposal.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Project Proposal</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By DSCI_522_GROUP28<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

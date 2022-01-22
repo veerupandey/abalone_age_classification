@@ -41,7 +41,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -51,7 +53,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Project Proposal" href="proposal.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,10 +113,10 @@
   Report
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Abalone Age Classification Project Report
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="report.html">
+   Classifying Abalone into young and old
   </a>
  </li>
 </ul>
@@ -164,7 +165,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -215,7 +216,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -238,8 +239,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#interpretations-and-model-results">
-   Interpretations and model results
+  <a class="reference internal nav-link" href="#model-results">
+   Model results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-findings">
+   Summary of Findings
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -265,7 +271,65 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Abalone Age Classification Project Report</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-the-data-set">
+   About the data set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#findings-and-results">
+   Findings and results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-results">
+   Model results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-findings">
+   Summary of Findings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-and-assumptions">
+   Limitations and assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#future-directions">
+   Future directions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="abalone-age-classification-project-report">
@@ -285,7 +349,10 @@ the data set represents the attributes and physical measurements of
 abalones including number of rings, sex, length, diameter, height, weight,
 etc. The number of rings were
 counted manually using a microscope by the researchers. The age of an abalone is represented by its number of
-rings plus 1.5 as number of years lived.
+rings plus 1.5 as number of years lived.</p>
+<p>This dataset was developed in 1995. Despite the age of this dataset, predictive models that can be made from this dataset are likely still relevant for the modern day. It takes thousands to millions of years in order for any meaningful changes to be made to the biological characteristics and features of animals. Darwin’s theory of evolution and natural selection applies to all animals, including abalone. Thus, the biological features of the abalone within this dataset are likely still relevant today, and meaningful predictive models can still be created from this dataset.</p>
+<p>The sex variable in this dataset includes three categories: female, male and infant. This is a curious component of the dataset since abalone sex is actually binary (male or female). Therefore, infant is not really considered a sex of abalone but instead is in reference to its age. Thus, this could pose a potential limitation in the predictive model which we will discuss later.
+Abalone of different sex has different body composition with distinct economic values.
 The data set has already removed its missing values and the range of the continuous values have been scaled for use with an ANN (by dividing by 200).</p>
 <p>In the research paper “A Quantitative Comparison of Dystal and Backpropagation” that David Clark, Zoltan Schreter and Anthony Adams submitted to the Australian Conference on Neural Networks (ACNN’96), the original abalone data set was treated as a 3-category classification problem (grouping ring classes 1-8, 9 and 10, and 11 on). In our project, we will treat the data set as a 2-categorical classification problem (grouping ring classes less or equal to 11, and more than 11).</p>
 <p>Here, we aim to answer one research question with a Logistic Regression classification model:</p>
@@ -295,7 +362,7 @@ The data set has already removed its missing values and the range of the continu
 </div>
 <div class="section" id="findings-and-results">
 <h2>Findings and results<a class="headerlink" href="#findings-and-results" title="Permalink to this headline">¶</a></h2>
-<p>The young-old class is determined by the number of rings present on the abalone. Moreover, a threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code> was set such that abalones that contained greater than 11 rings would be placed in the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and otherwise the abalone would be placed in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. Using this threshold of <code class="docutils literal notranslate"><span class="pre">rings</span> <span class="pre">&gt;</span> <span class="pre">11</span></code>, all of the examples of abalone in the training and test data were split into either the <code class="docutils literal notranslate"><span class="pre">old</span></code> class or the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. To determine any indications of class imbalance based on this threshold, we explored the distribution of target classes (<code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code>) in the training data (Figure 1). Indeed, the distribution indicates a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes within the training data. More specifically, there are 2,576 examples of the class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, whereas there are only 766 examples of the class, <code class="docutils literal notranslate"><span class="pre">old</span></code>, within the training data. Apparently the data is imbalanced. We do not think it is necessary to deal with class imbalance in this case because we are not actively looking into a young or old abalone. However, this is an important component of the training data that needs to be kept in mind as the analysis is followed through.</p>
+<p>Considering that the price of an abalone is positively associated with its age, creating a predictive model that is able to automate the manual process of determining the age of an abalone would be valuable to those wishing to determine the age of an abalone, whether it is researchers or those interested in making a profit in the abalone market. Of note, the number of rings present on the abalone directly determines the age of the abalone. For this project, we are separating the abalone into two classes, young and old, based on a threshold on the rings. Moreover, we are using a threshold whereby abalone that contain more than 11 rings would be placed in the old class and otherwise the abalone would be placed in the young class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
@@ -313,8 +380,9 @@ The data set has already removed its missing values and the range of the continu
 <img alt="_images/Project_report_milestone2_6_0.png" src="_images/Project_report_milestone2_6_0.png" />
 </div>
 </div>
-<p>Figure 1. Distribution of target classes, young and old, for abalone in the training data</p>
-<p>Next, we looked to elaborate upon the distribution of numerical features in the training data in relation to the target class (Figure 2). The distribution of the numerical features seemed to follow a similar shape for both the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. The distribution of the length and diameter features was left-skewed, while the whole weight, viscera weight, shucked weight, and shell weight appeared to have a right-skewed distribution. The height feature did not have a clear skewness to the distribution.</p>
+<p>Figure 1. There is an imbalance in the distribution of young and old abalone in the training data.</p>
+<p>After looking at the distributions of young and old abalone in the training, it’s quite clear that there is a class imbalance in the age of the abalone (Figure 1). In fact, the number of young abalone is around triple the number of old abalone in the training data. In the model, we will test a bunch of metrics including accuracy, precision, recall, f1 score, ROC AUC, and average precision. We are going to focus more on f1 score and ROC AUC because we want to observe the overall performance of our model instead of putting more weight on one class over another.</p>
+<p>Next, we looked to elaborate upon the distribution of numerical features in the training data in relation to the target class (Figure 2). The distribution of the numerical features seemed to follow a similar shape for both the old class and the young class. The distribution of the length and diameter features was left-skewed, while the whole weight, viscera weight, shucked weight, and shell weight appeared to have a right-skewed distribution. The height feature did not have a clear skewness to the distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/histograms.png&quot;</span><span class="p">)</span>
@@ -325,8 +393,10 @@ The data set has already removed its missing values and the range of the continu
 <img alt="_images/Project_report_milestone2_9_0.png" src="_images/Project_report_milestone2_9_0.png" />
 </div>
 </div>
-<p>Figure 2. Distributions of numerical features for both the young and old class of abalone</p>
-<p>Observing the distribution of sexes in the training data, there appears to be a relatively even spread of <code class="docutils literal notranslate"><span class="pre">Female</span></code> (F), <code class="docutils literal notranslate"><span class="pre">Male</span></code> (M) within both the <code class="docutils literal notranslate"><span class="pre">young</span></code> and <code class="docutils literal notranslate"><span class="pre">old</span></code> target classes, whereas there are a greater number of <code class="docutils literal notranslate"><span class="pre">Infant</span></code> (I) examples in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class compared to the <code class="docutils literal notranslate"><span class="pre">old</span></code> class (Figure 3). Specifically, there were 354 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Male</span></code> and 340 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Female</span></code> in the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and there were 882 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Male</span></code> and 684 examples of abalone that were <code class="docutils literal notranslate"><span class="pre">Female</span></code> in the <code class="docutils literal notranslate"><span class="pre">young</span></code> class. For the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> class, there was a greater number of examples of <code class="docutils literal notranslate"><span class="pre">Infant</span></code> in the young class (1009) compared to the <code class="docutils literal notranslate"><span class="pre">old</span></code> class (72).</p>
+<p>Figure 2. The distributions of the numerical features are similar between young and old abalone, but may provide insight into slight differences in the features between young and old abalone.</p>
+<p>By looking at these histograms, we can see the pronounced effect of the class imbalance. The majority of the values in each numerical feature histogram has a higher proportion of young abalone examples compared to old abalone examples. It’s difficult to say for certain whether there are clear distinctions in these features between the young and old class. However, there are a few areas to be aware of that might help us understand how the model might make predictions. Observing the length feature, we can see that when the length of the abalone is below 0.38, almost all of the examples are from the young class, with very few examples from the old class. Similarly for the diameter feature, when the diameter of the abalone is below 0.25, the majority of examples are from the young class, with hardly any examples from the old class. This aligns with our intuitions about abalone, since we should expect younger abalone to be smaller (i.e smaller diameter and length).</p>
+<p>There are rare occasions when there are examples that are predominantly from the old class. For example, when shell weight is above 0.6, the majority of examples are of the old class. Additionally, when whole weight is above 2.2, the old class begins to be the more predominant class. Again, this aligns with our intuitions about abalone. We would expect older abalone to be larger, and thus, have a larger whole weight. In terms of shell weight, perhaps abalone of the old class require a larger shell for their larger bodies compared to young abalone, which could explain why there are more examples of old abalone which have a shell weight above 0.6.</p>
+<p>Observing the distribution of sexes in the training data, there appears to be a relatively even spread of Female (F), Male (M) within both the young and old target classes, whereas there are a greater number of Infant (I) examples in the young class compared to the old class (Figure 3). Specifically, there were 354 examples of abalone that were male and 340 examples of abalone that were Female in the old class and there were 882 examples of abalone that were male and 684 examples of abalone that were female in the young class. For the Infant class, there was a greater number of examples of Infant in the young class (1009) compared to the old class (72).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/sex_dist.png&quot;</span><span class="p">)</span>
@@ -337,8 +407,9 @@ The data set has already removed its missing values and the range of the continu
 <img alt="_images/Project_report_milestone2_12_0.png" src="_images/Project_report_milestone2_12_0.png" />
 </div>
 </div>
-<p>Figure 3. The distribution of sexes for both classes, young and old, of abalone in the training data</p>
-<p>Since the target classes, <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code>, are directly determined by counting the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code>, we were able to determine the correlation of numerical features with the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code>, as well as the correlation among other features (Figure 4). Based on the correlation values, many of the features are highly correlated with other features. As for correlation with <code class="docutils literal notranslate"><span class="pre">rings</span></code>, the <code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">weight</span></code> seemed to have the greatest correlation value (0.69) with <code class="docutils literal notranslate"><span class="pre">rings</span></code>, while <code class="docutils literal notranslate"><span class="pre">Shucked</span> <span class="pre">weight</span></code> appeared to have the lowest correlation with <code class="docutils literal notranslate"><span class="pre">rings</span></code> (0.54). Based on the correlation heat map, it appears that the numerical features are at least moderately correlated with <code class="docutils literal notranslate"><span class="pre">rings</span></code>.</p>
+<p>Figure 3. There is an even distribution of male and female abalone within the young and old classes, but a major imbalance in the infant category between young and old abalone.</p>
+<p>As expected, there is no roughly bias for one particular sex (Male or Female) depending on if the abalone is old or young. However, the greater number of Infant abalone in the young class does give pause. Our intuitions do indeed tell us that more Infant abalone would classified as young, but the bigger issue in this dataset could be that we are predicting whether an abalone is young or old, after being given information about whether an abalone is an Infant which creates redundancy in the predictive model. It is curious why the researchers decided to include the category Infant within the sex feature column. Perhaps when an abalone is an infant, it is difficult to classify the abalone as Male or Female. Without speaking to domain experts, it is difficult to determine the significance behind having an Infant category within the Sex feature.</p>
+<p>Since the target classes, old and young, are directly determined by counting the number of rings, we were able to determine the correlation of numerical features with the number of rings, as well as the correlation among other features (Figure 4). Based on the correlation values, many of the features are highly correlated with other features. As for correlation with rings, the shell weight seemed to have the greatest correlation value (0.69) with rings, while shucked weight appeared to have the lowest correlation with rings (0.54). Based on the correlation heat map, it appears that the numerical features are at least moderately correlated with rings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/eda/correlation_map.png&quot;</span><span class="p">)</span>
@@ -349,15 +420,12 @@ The data set has already removed its missing values and the range of the continu
 <img alt="_images/Project_report_milestone2_15_0.png" src="_images/Project_report_milestone2_15_0.png" />
 </div>
 </div>
-<p>Figure 4. Correlations between numerical features and the number of rings in an abalone in the training data</p>
+<p>Figure 4. Features are highly correlated with each other and moderately correlated with rings, which is a proxy for the age of the abalone.</p>
+<p>These correlation values give us some insight into how the predictive model might make its decision. For example, since shell weight and Rings have a moderately high correlation, the shell weight might be an important feature for predicting the age of the abalone. In the context of abalone, this could mean that older abalone require a heavier shell, whereas younger abalone may only need a lighter shell. With these correlation values, our model might be able to pick up on these types of associations. One trend to note is that many of the explanatory features are correlated with each other. For example, the diameter of an abalone is highly correlated with the length of the abalone. This is quite understandable, considering that as an abalone gets larger in diameter, one might expect the length of the abalone to also get larger. However, this does pose some implications for our model. It begs the question, how essential is it to include every single explanatory feature in this model? If diameter is encapsulating the information provided by length, would it be necessary to include both of these features? Discussing with domain experts can help us to determine which features may be more essential, or in the event that we lack access to domain experts, we could conduct automated feature selection in the future to address the redundancy in explanatory features.</p>
 </div>
-<div class="section" id="interpretations-and-model-results">
-<h2>Interpretations and model results<a class="headerlink" href="#interpretations-and-model-results" title="Permalink to this headline">¶</a></h2>
-<p>An important note about the training data is that there exists a class imbalance between <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> target classes. With more examples of the target class, <code class="docutils literal notranslate"><span class="pre">young</span></code>, this could have an effect on the accuracy of the model. Because of this fact, we may considered additional scoring metrics in addition to accuracy, such as recall, precision, and f1 score to account for this class imbalance.</p>
-<p>Observing the distributions of the numerical features gives some insight into some of the distinctions between the <code class="docutils literal notranslate"><span class="pre">old</span></code> class and <code class="docutils literal notranslate"><span class="pre">young</span></code> class of abalone. For example, when abalone are <code class="docutils literal notranslate"><span class="pre">old</span></code>, there are only a few examples where the abalone <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38, whereas the <code class="docutils literal notranslate"><span class="pre">young</span></code> class has many examples of abalone where their <code class="docutils literal notranslate"><span class="pre">length</span></code> is below 0.38. Another example that is observable is that for the <code class="docutils literal notranslate"><span class="pre">diameter</span></code> feature, there are few examples of <code class="docutils literal notranslate"><span class="pre">old</span></code> abalone that contain a <code class="docutils literal notranslate"><span class="pre">diameter</span></code> less than 0.30, while <code class="docutils literal notranslate"><span class="pre">young</span></code> abalone have a number of examples where their <code class="docutils literal notranslate"><span class="pre">diameter</span></code> is less than 0.30.</p>
-<p>There is a relatively even distribution between the <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within each of the target classes, <code class="docutils literal notranslate"><span class="pre">young</span></code> and <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected behaviour of the distribution between <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code>, as there likely isn’t any bias toward one sex within this organism. However, the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category of the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature has a greater number of examples that are <code class="docutils literal notranslate"><span class="pre">young</span></code> compared to <code class="docutils literal notranslate"><span class="pre">old</span></code>. This is expected, since <code class="docutils literal notranslate"><span class="pre">Infants</span></code> are expected to be younger abalone. The indistinct distribution of <code class="docutils literal notranslate"><span class="pre">Male</span></code> and <code class="docutils literal notranslate"><span class="pre">Female</span></code> abalone within the <code class="docutils literal notranslate"><span class="pre">old</span></code> and <code class="docutils literal notranslate"><span class="pre">young</span></code> classes likely doesn’t provide any predictive value to our model. Additionally, since the objective of the model is to predict whether an abalone is <code class="docutils literal notranslate"><span class="pre">young</span></code> or <code class="docutils literal notranslate"><span class="pre">old</span></code>, it may not make sense to include the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature in the model as the presence of the <code class="docutils literal notranslate"><span class="pre">Infant</span></code> category within the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> feature would make this classification model redundant.</p>
-<p>The correlation map provides useful information in determining what feature might be valuable for predicting whether an abalone is <code class="docutils literal notranslate"><span class="pre">old</span></code> or <code class="docutils literal notranslate"><span class="pre">young</span></code>. Since many of the numerical features seem to be at least moderately correlated with the number of <code class="docutils literal notranslate"><span class="pre">rings</span></code> (which directly determines age of abalone), many of these numerical features are likely useful to include in our model. However, feature selection should be considered in the future to pick the most important features. Indeed, many of the features were highly correlated with other features and therefore, including all features that are highly correlated with each other may be unnecessary and redundant.</p>
-<p>We fit a logistic regression on the train data as we are dealing with a binary classification problem. The model set the target class <code class="docutils literal notranslate"><span class="pre">old</span></code> as 0 and <code class="docutils literal notranslate"><span class="pre">young</span></code> as 1. We first build a preprocessor which transfers the <code class="docutils literal notranslate"><span class="pre">sex</span></code> category by using One-Hot-Encoding and applies standard scaler on other numeric features. Then, we use grid search cross validation to find the best hyperparameter for the logistic regression. The tuning results is shown in the figure 5 and table 1. The best model fit is when <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">100</span></code> and the model is exported as a <code class="docutils literal notranslate"><span class="pre">.sav</span></code> file. After fitting the model, we use test set to check the model performance. In table 2, the metrics on the test data set is shown. As we have <code class="docutils literal notranslate"><span class="pre">young</span></code> class as 1 and more <code class="docutils literal notranslate"><span class="pre">young</span></code> abalone in the data set, we can expect a relatively high recall score. To delve deeper into the reasons for the model’s predictions, we output the coefficient in table 3 and plotted a bar chart to show the importance of features. Based on the model coefficients, the <code class="docutils literal notranslate"><span class="pre">shucked_weight</span></code> and whether the abalone is an infant contributes the most to predicting an abalone as <code class="docutils literal notranslate"><span class="pre">young</span></code>. On the other hand, the <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">weight</span></code> contributes the most to predicting an abalone as <code class="docutils literal notranslate"><span class="pre">old</span></code>. As we lack domain knowledge in abalone, we cannot interpret why two types of weights, <code class="docutils literal notranslate"><span class="pre">shucked_weight</span></code> and <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">weight</span></code> point in opposite directions in the model in regards to their coefficients. But it is understandable that being an infant abalone is associated with being <code class="docutils literal notranslate"><span class="pre">young</span></code>.</p>
+<div class="section" id="model-results">
+<h2>Model results<a class="headerlink" href="#model-results" title="Permalink to this headline">¶</a></h2>
+<p>An important note about the training data is that there exists a class imbalance between old and young target classes. With more examples of the target class, young, this could have an effect on the accuracy of the model. Because of this fact, we are considering the f1 score and ROC AUC to account for this class imbalance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;../results/model/cv_result.png&quot;</span><span class="p">)</span>
@@ -365,10 +433,11 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_18_0.png" src="_images/Project_report_milestone2_18_0.png" />
+<img alt="_images/Project_report_milestone2_19_0.png" src="_images/Project_report_milestone2_19_0.png" />
 </div>
 </div>
-<p>Figure 5. Validation score with different hyperparameter C</p>
+<p>Figure 5. As the hyperparameter C of logistic regression increases, the validation score increases before leveling off at higher values of C.</p>
+<p>We fit a logistic regression on the training data as we are dealing with a binary classification problem. The model set the target class old as 0 and young as 1. We first built a preprocessor which transformed the Sex category by using One-Hot-Encoding and we applied standard scaler on other numeric features. We then used a Grid Search cross validation to determine the best hyperparameter for the logistic regression. As we can see, as the value of C increases, the model’s performance on validation sets increase and plateau at around <span class="math notranslate nohighlight">\(C = 100\)</span>. Note that the hyperparameter, C, of logistic regression is associated with the regularization strength (complexity penalty) of the model. Based on the tuning results, the best logistic regression model occurs when <span class="math notranslate nohighlight">\(C = 100\)</span> (Figure 5 and Table 1).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;../results/model/train_result_table.html&#39;</span><span class="p">)</span>
@@ -394,45 +463,45 @@ The data set has already removed its missing values and the range of the continu
   <tbody>
     <tr>
       <th>1</th>
-      <td>0.826403</td>
+      <td>0.894</td>
       <td>100.0</td>
-      <td>0.030071</td>
+      <td>0.038</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.826403</td>
+      <td>0.894</td>
       <td>1000.0</td>
-      <td>0.026508</td>
+      <td>0.036</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.826104</td>
+      <td>0.894</td>
       <td>10.0</td>
-      <td>0.037531</td>
+      <td>0.052</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.822811</td>
+      <td>0.892</td>
       <td>1.0</td>
-      <td>0.031396</td>
+      <td>0.044</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.820115</td>
+      <td>0.891</td>
       <td>0.1</td>
-      <td>0.028026</td>
+      <td>0.037</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.798865</td>
+      <td>0.883</td>
       <td>0.01</td>
-      <td>0.019385</td>
+      <td>0.025</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.775518</td>
+      <td>0.873</td>
       <td>0.001</td>
-      <td>0.016184</td>
+      <td>0.019</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -457,37 +526,39 @@ The data set has already removed its missing values and the range of the continu
     <tr>
       <th>0</th>
       <td>accuracy</td>
-      <td>0.842105</td>
+      <td>0.84</td>
     </tr>
     <tr>
       <th>1</th>
       <td>f1</td>
-      <td>0.902511</td>
+      <td>0.90</td>
     </tr>
     <tr>
       <th>2</th>
       <td>recall</td>
-      <td>0.953198</td>
+      <td>0.95</td>
     </tr>
     <tr>
       <th>3</th>
       <td>precision</td>
-      <td>0.856942</td>
+      <td>0.86</td>
     </tr>
     <tr>
       <th>4</th>
       <td>roc_auc</td>
-      <td>0.856794</td>
+      <td>0.86</td>
     </tr>
     <tr>
       <th>5</th>
       <td>average_precision</td>
-      <td>0.945716</td>
+      <td>0.95</td>
     </tr>
   </tbody>
 </table></div></div>
 </div>
 <p>Table 2. Test results on different metrics</p>
+<p>After fitting the model, we used a test set to assess how the model would perform on novel examples. The evaluation metrics on the test data set is shown (Table 2). Based on the model’s performance on the test set, the f1 score is 0.9, where the f1 score is the harmonic mean of the model’s recall score and precision score.</p>
+<p>To understand how the features in the dataset are influencing the model’s predictions, we calculated the coefficients to demonstrate the importance of each feature in the model (Figure 6 and Table 3).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;../results/model/coeff_sorted.html&quot;</span><span class="p">)</span>
@@ -504,44 +575,44 @@ The data set has already removed its missing values and the range of the continu
   </thead>
   <tbody>
     <tr>
-      <th>standardscaler__Shucked weight</th>
-      <td>4.142553</td>
+      <th>Shucked weight</th>
+      <td>4.14</td>
     </tr>
     <tr>
-      <th>onehotencoder__Sex_I</th>
-      <td>0.983024</td>
+      <th>Sex_I</th>
+      <td>0.98</td>
     </tr>
     <tr>
-      <th>standardscaler__Viscera weight</th>
-      <td>0.818804</td>
+      <th>Viscera weight</th>
+      <td>0.82</td>
     </tr>
     <tr>
-      <th>standardscaler__Length</th>
-      <td>0.537147</td>
+      <th>Length</th>
+      <td>0.54</td>
     </tr>
     <tr>
-      <th>onehotencoder__Sex_F</th>
-      <td>0.129540</td>
+      <th>Sex_F</th>
+      <td>0.13</td>
     </tr>
     <tr>
-      <th>onehotencoder__Sex_M</th>
-      <td>0.121077</td>
+      <th>Sex_M</th>
+      <td>0.12</td>
     </tr>
     <tr>
-      <th>standardscaler__Height</th>
-      <td>-0.248307</td>
+      <th>Height</th>
+      <td>-0.25</td>
     </tr>
     <tr>
-      <th>standardscaler__Diameter</th>
-      <td>-0.538840</td>
+      <th>Diameter</th>
+      <td>-0.54</td>
     </tr>
     <tr>
-      <th>standardscaler__Shell weight</th>
-      <td>-1.070738</td>
+      <th>Shell weight</th>
+      <td>-1.07</td>
     </tr>
     <tr>
-      <th>standardscaler__Whole weight</th>
-      <td>-4.306860</td>
+      <th>Whole weight</th>
+      <td>-4.31</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -554,17 +625,23 @@ The data set has already removed its missing values and the range of the continu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Project_report_milestone2_26_0.png" src="_images/Project_report_milestone2_26_0.png" />
+<img alt="_images/Project_report_milestone2_29_0.png" src="_images/Project_report_milestone2_29_0.png" />
 </div>
 </div>
-<p>Figure 6. Feature importance as a bar chart</p>
+<p>Figure 6. Shucked weight appears to be an important feature in the predictive model for predicting the young class, while Whole weight is an important feature in the predictive model for predicting the old class.</p>
+<p>Based on the coefficients, shucked weight influences the model the most towards predicting that an abalone is young, whereas whole_weight influences the model the most towards predicting that an abalone is old.</p>
+<p>It is interesting to observe that the whole weight of an abalone and the shucked weight of an abalone are influence the predictions in opposite directions. By observing the distribution of shucked weight (Figure 2), the shapes of the distributions are quite similar between old and young abalone, and at no point in the distribution are there more examples of old abalone compared to young abalone. In contrast, above a certain threshold, there are more examples of old abalone in the whole weight and shucked weight distributions. Understanding the distributions of these weight features helps us to understand why different types of weight are influencing the prediction in opposite directions. It would be useful to consult a domain expert to see if they would have insight in the differences between old and young abalone in regard to the different types of weight features. However, it’s imperative that one takes these feature importances and model performance with a grain of salt, considering that the dataset is imbalanced and that these statistical models don’t necessarily explain how the real world works.</p>
+</div>
+<div class="section" id="summary-of-findings">
+<h2>Summary of Findings<a class="headerlink" href="#summary-of-findings" title="Permalink to this headline">¶</a></h2>
+<p>Based on the model results, we can see that the logistic regression model is performing well on new examples of abalone, as described by an f1 score of 0.90 and ROC AUC score of 0.86. We focus on these two metrics because they evaluate overall performance of model instead of weighing one class over another. Moreover, given a certain set of biological features of abalone, we’re able to predict whether an abalone is old or young fairly accurately while minimizing false negatives and false positives. We were able to obtain these results by testing different values for the model’s hyperparameter, C, on various validation sets of the abalone training data in order to obtain an optimal logistic regression model (where <span class="math notranslate nohighlight">\(C = 100\)</span>). We also obtained the coefficients of the various biological features that helped us understand how the features were influencing the prediction. The weight features (shucked weight, whole weight, and shell weight) specifically had a large influence on the model’s predictions. Contrasting the distributions of these weight features between the old and young abalone helped us to investigate why shucked weight was having an opposite predictive effect in comparison with whole weight and shell weight, although consulting with domain experts may help us further understand this opposing effect. Overall, the model’s ability to predict whether an abalone is young or old based on specific biological characteristics is good but should be taken with a grain of salt given the imbalance of young and old abalone within the dataset, as well as some of the limitations of the included biological characteristics.</p>
 </div>
 <div class="section" id="limitations-and-assumptions">
 <h2>Limitations and assumptions<a class="headerlink" href="#limitations-and-assumptions" title="Permalink to this headline">¶</a></h2>
-<p>One limitation is that we found some of the input features are highly correlated. For example, the correlation between <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> of abalone is 0.97, indicating that these two features are highly positively correlated. This will potentially raise the multicollinearity concern. As a result, it can become difficult for the model to estimate the relationship between each independent variable and the dependent variable independently. One method to address correlated features is to use recursive feature elimination to exclude features with little importance so we can fit a more interpretable model. Since our primary goal is to make classification on the abalone age (old or young), and we don’t need to understand the role of each independent variable such as <code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, we did not take additional actions to reduce the multicollinearity problem in this project.</p>
+<p>One limitation is that we found some of the input features are highly correlated. For example, the correlation between whole weight and length of abalone is 0.97, indicating that these two features are highly positively correlated. This will potentially raise the multicollinearity concern. As a result, it can become difficult for the model to estimate the relationship between each independent variable and the dependent variable independently. One method to address correlated features is to use recursive feature elimination to exclude features with little importance so we can fit a more interpretable model. Additionally, the high correlation between many of the features may insinuate that many of the features are redundant and the inclusion of all of them may be unnecessary. For example, including both diameter and length conveys very similar messages about the biology of the abalone, and may indicate that it is unnecessary to include both of these biological features. Since our primary goal is to make classification on the abalone age (old or young), and we don’t need to understand the role of each independent variable such as weight and height, we did not take additional actions to reduce the multicollinearity problem in this project.</p>
 <p>We fit a logistic regression and tuned it by using grid search. Other classification models like decision tree or KNN can be used in this project. We chose logistic regression for its good interpretability and its performance. However, with better feature engineering or better model selection, the performance can be improved.</p>
-<p>Also, the <code class="docutils literal notranslate"><span class="pre">infant</span></code> category for <code class="docutils literal notranslate"><span class="pre">Sex</span></code> of a abalone is included in this project. In future additional analysis, we would consider removing this category, since being an infant inherently indicates that the abalone is young, and therefore makes the predictive model redundant.</p>
-<p>Another limitation might be that the authors of this project lack the domain knowledge to feature engineer the model inputs. We included all features in the data set in our classification model for predicting age. Additional feature engineering given domain knowledge would potentially improve the model accuracy.</p>
+<p>In regard of the sex feature, the infant category for sex of a abalone is included in this project which may be unnecessary and may harm the validity of the model. It is interesting that the researchers that collected this data included an Infant category within the sex feature, and makes us ponder the significance of its inclusion. Perhaps with consultation with domain experts, the significance of this collection method can be elucidated. In future additional analysis and after consultation with domain experts, we might consider removing the Infant category or the sex feature altogether, since being an infant inherently indicates that the abalone is young, and therefore makes the predictive model redundant.</p>
+<p>The lack of the domain knowledge to feature engineer the model inputs was a pronounced limitation throughout the project. Because of this limitation, we included all features in the data set in our classification model for predicting age. However, once greater knowledge is achieved through domain expert consultation, we may be able to conduct additional feature engineering and feature selection that would potentially improve the model’s performance and reliability.</p>
 </div>
 <div class="section" id="future-directions">
 <h2>Future directions<a class="headerlink" href="#future-directions" title="Permalink to this headline">¶</a></h2>
@@ -621,30 +698,21 @@ The data set has already removed its missing values and the range of the continu
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="proposal.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Project Proposal</p>
-        </div>
-    </a>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By DSCI_522_GROUP28<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By DSCI_522_GROUP28<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
