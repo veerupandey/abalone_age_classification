@@ -6,4 +6,4 @@ parts:
       - file: proposal.md
   - caption: Report
     chapters: 
-    - file: report.ipynb
+    - file: Project_report_milestone2.ipynb
