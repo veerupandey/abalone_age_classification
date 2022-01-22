@@ -1,9 +1,2 @@
 format: jb-book
-root: README
-parts:
-  - caption: Proposal
-    chapters:
-      - file: proposal.md
-  - caption: Report
-    chapters: 
-    - file: report.ipynb
+root: report.ipynb
