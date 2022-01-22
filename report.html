@@ -299,7 +299,7 @@ rings plus 1.5 as number of years lived.</p>
 </table>
 <p>Table 1: Input and Target description</p>
 <p>For this project, we are separating the abalone into two classes, young and old, based on a threshold on the rings. Moreover, we are using a threshold whereby abalone that contain more than 11 rings would be placed in the old class and otherwise the abalone would be placed in the young class.</p>
-<p>The original abalone data set was analysed as a three-category classification issue in David Clark, Zoltan Schreter, and Anthony Adams’ research article “A Quantitative Comparison of Dystal and Backpropagation” presented at the Australian Conference on Neural Networks (ACNN’96) (grouping ring classes 1-8, 9 and 10, and 11 on).</p>
+<p>The original abalone data set was analysed as a three-category classification issue in David Clark, Zoltan Schreter, and Anthony Adams’ research article “A Quantitative Comparison of Dystal and Backpropagation” presented at the Australian Conference on Neural Networks (ACNN’96) (grouping ring classes 1-8, 9 and 10, and 11 on).[3]</p>
 </div>
 <div class="section" id="exploratory-data-analysis">
 <h3>2.2 Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h3>
@@ -350,7 +350,7 @@ rings plus 1.5 as number of years lived.</p>
 <div class="section" id="data-preprocessing">
 <h3>2.2 Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h3>
 <p>The dataset obtained was pretty clean and did not have any missing value. To model the numeric data correctly with logistic regression, we used a data preprocessing technique called “Data Scaling”. The goal of data scaling is to change the values of numeric columns in the dataset to use a common scale, without distorting differences in the ranges of values or losing information.</p>
-<p>Further, we converted the categorical attribute Sex to numeric values using “one-hot encoding” technique<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">[5]</a> then the numeric value was further scaled.</p>
+<p>Further, we converted the categorical attribute Sex to numeric values using “one-hot encoding” technique<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">[4]</a> then the numeric value was further scaled.</p>
 </div>
 <div class="section" id="data-scaling">
 <h3>2.3 Data Scaling<a class="headerlink" href="#data-scaling" title="Permalink to this headline">¶</a></h3>
@@ -383,7 +383,7 @@ $<span class="math notranslate nohighlight">\(z = (x - \mu) / s\)</span>$</p>
 <img alt="_images/report_23_0.png" src="_images/report_23_0.png" />
 </div>
 </div>
-<p>Figure 4. Hyperparameter tuning for C in logistic regression.</p>
+<p>Figure 4: Hyperparameter tuning for C in logistic regression.</p>
 </div>
 </div>
 <div class="section" id="results">
@@ -556,7 +556,6 @@ $<span class="math notranslate nohighlight">\(z = (x - \mu) / s\)</span>$</p>
 <li><p><a class="reference external" href="http://www.marinebio.net/marinescience/06future/abintro.htm">http://www.marinebio.net/marinescience/06future/abintro.htm</a></p></li>
 <li><p>Tryon, Jr., George W. (1880). Manual of Conchology; Structural and Systematic With Illustrations of the Species (PDF).II: Muricinæ, Purpurinæ. Philadelphia, PA: Academy of Natural Sciences.</p></li>
 <li><p>“A Quantitative Comparison of Dystal and Backpropagation” presented to the Australian Conference on Neural Networks (ACNN’96) by David Clark, Zoltan Schreter, and Anthony Adams</p></li>
-<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/azure/machine-learning/studio-module-reference/normalize-data#:~:text=Normalization%20is%20a%20technique%20often,of%20values%20or%20losing%20information">https://docs.microsoft.com/en-us/previous-versions/azure/machine-learning/studio-module-reference/normalize-data#:~:text=Normalization is a technique often,of values or losing information</a>.</p></li>
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html</a></p></li>
 </ol>
 </div>
